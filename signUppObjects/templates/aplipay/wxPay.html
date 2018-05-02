@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信扫码支付</title>
+</head>
+<body>
+<img width="200" height="200" class="scrollLoading" data-url="{{ MEDIA_URL }}{{ image_name }}" src="{{ MEDIA_URL }}{{ image_name }}"/>
+<h1> {{ error }} </h1>
+</body>
+</html>
+

@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="blankHeight"></div>
+<div class="banner">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'images/indexbg2X.png' %}"></a></div>
+            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'images/indexbg2X.png' %}"></a></div>
+            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'images/indexbg2X.png' %}"></a></div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+</div>
+<div class="main">
+    <div class="worrysDiv container">
+        <div class="title"><span>你是否有这样的烦恼？</span></div>
+        <div class="worrys container">
+            <div class="difficult col-md-3 col-sm-6 col-xs-12">
+                <div class="circlePic"></div>
+                <div class="describe"><span>学车艰难</span><span>不管风吹日晒，上班还是上课</span></div>
+            </div>
+            <div class="wasteTime col-md-3 col-sm-6 col-xs-12">
+                <div class="circlePic"></div>
+                <div class="describe"><span>时间白白流失</span><span>教练约不上，练车要排队</span></div>
+            </div>
+            <div class="noPatience col-md-3 col-sm-6 col-xs-12">
+                <div class="circlePic"></div>
+                <div class="describe"><span>繁琐没耐心</span><span>操作枯燥，学不会</span></div>
+            </div>
+            <div class="noExperience col-md-3 col-sm-6 col-xs-12">
+                <div class="circlePic"></div>
+                <div class="describe"><span>实练经验不足</span><span>考试就容易失误，紧张</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="entry">
+        <div class="container">
+            <h4>报名课程</h4>
+            <div class="  c1 col-md-6 col-sm-6 col-xs-12">
+                <div class="curriculum">
+                    <div class="pic"></div>
+                    <div class="infDv">
+                        <div class="curriculumName"><span>C1超越期望优质课{{ course1.name }}</span></div>
+                        <div class="information">
+                            <span>科目一理论培训课，保险费，科目二，科目三训练费{{ course1.detail1 }}</span>
+                            <span class="emphasize"><br>+赠智能真车模拟系统4课时{{ course2.detail2 }</span>
+                        </div>
+
+                    </div>
+                    <div class="priceDiv">
+                        <span class="emphasize price">￥4850{{ course1.cost_new }}</span>
+                        <div class="detailBtn"><span>查看详情</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="  c2 col-md-6 col-sm-6 col-xs-12">
+                <div class="curriculum">
+                    <div class="pic"></div>
+                    <div class="infDv">
+                        <div class="curriculumName"><span>C2自由舒适尊享课{{ course2.cost_new }}</span></div>
+                        <div class="information">
+                            <span>科目一理论培训课，保险费，科目二，科目三训练费{{ course2.detail1 }}</span>
+                            <span class="emphasize"><br>+赠智能真车模拟系统4课时{{ course2.detail2}}</span>
+                        </div>
+                    </div>
+                    <div class="priceDiv">
+                        <span class="emphasize price">￥5850{{ course2.cost_new }}</span>
+                        <div class="detailBtn"><span>查看详情</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    
+{% block custom_js %}
+        <script src="{% static '/js/swiper.min.js' %}"></script>
+{% endblock %}
+<script>
+        var mySwiper = new Swiper ('.swiper-container', {
+            direction: 'horizontal',
+            loop: true,
+
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            speed:800,
+            autoplay:true,
+            loop : true,
+            loopAdditionalSlides : 2,
+            autoplayDisableOnInteraction : false,
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            }
+        })
+</script>

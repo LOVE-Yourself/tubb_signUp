@@ -1,0 +1,149 @@
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="blankHeight"></div>
+<div class="banner">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><a href="getCoupon.html"><img src=".././static/images/indexbg2X.png"></img></a></div>
+            <div class="swiper-slide"><div></div></div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+</div>
+<div class="main">
+    <div class="coupon container">
+        <h3>新春专享优惠</h3>
+        <div class="couponDiv">
+            <div class="col-xs-12  col-sm-6 col-md-4 col-lg-3">
+                <div class="getCouponDiv available ">
+                    <input class="couponId" value="123456789" style="display: none">
+                    <div class="leftDiv">
+                        <span class="moneyType">￥</span>
+                        <div class="price">200</div>
+                        <span class="activity">新春活动</span>
+                    </div>
+                    <div class="rightDiv">
+                        <div class="top">
+                            <span class="limit">【限C1报名】</span>
+                            <div class="getCouponBtn"><span>领取></span><input class="couponId" value="89" style="display: none"></div>
+                        </div>
+                        <div class="expireDate"><span>自领取之日起30天有效</span></div>
+                    </div>
+                    <div class="whiteCircle"></div>
+                    <div class="invalid"><span>已领取</span></div>
+                </div>
+            </div>
+            <div class="col-xs-12  col-sm-6 col-md-4 col-lg-3">
+                <div class="getCouponDiv  available">
+                    <input class="couponId" value="{{ coupon.id }}" style="display: none">
+                    <div class="leftDiv">
+                        <span class="moneyType">￥</span>
+                        <div class="price">150</div>
+                        <span class="activity">新春活动</span>
+                    </div>
+                    <div class="rightDiv">
+                        <div class="top">
+                            <span class="limit">【限C1报名】</span>
+                            <div class="getCouponBtn"><span>领取></span><input class="couponId" value="89" style="display: none"></div>
+                        </div>
+                        <div class="expireDate"><span>自领取之日起30天有效</span></div>
+                    </div>
+                    <div class="whiteCircle"></div>
+                    <div class="invalid"><span>已领取</span></div>
+                </div>
+            </div>
+            <div class="col-xs-12  col-sm-6 col-md-4 col-lg-3">
+                <div class="getCouponDiv  expire">
+                    <div class="leftDiv">
+                        <span class="moneyType">￥</span>
+                        <div class="price">50</div>
+                        <span class="activity">新春活动</span>
+                    </div>
+                    <div class="rightDiv">
+                        <div class="top">
+                            <span class="limit">【限C1报名】</span>
+                            <div class="getCouponBtn"><span>领取></span><input class="couponId" value="89" style="display: none"></div>
+                        </div>
+                        <div class="expireDate"><span>自领取之日起30天有效</span></div>
+                    </div>
+                    <div class="whiteCircle"></div>
+                    <div class="invalid"><span>已领取</span></div>
+                </div>
+            </div>
+            <div class="col-xs-12  col-sm-6 col-md-4 col-lg-3">
+                <div class="getCouponDiv  expire">
+                    <div class="leftDiv">
+                        <span class="moneyType">￥</span>
+                        <div class="price">20</div>
+                        <span class="activity">新春活动</span>
+                    </div>
+                    <div class="rightDiv">
+                        <div class="top">
+                            <span class="limit">【限C1报名】</span>
+                            <div class="getCouponBtn"><span>领取></span><input class="couponId" value="9876" style="display: none"></div>
+                        </div>
+                        <div class="expireDate"><span>自领取之日起30天有效</span></div>
+                    </div>
+                    <div class="whiteCircle"></div>
+                    <div class="invalid"><span>已领取</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="rule">
+            <h4>活动规则</h4>
+            <div>
+                <span>
+                活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动规则活动
+               </span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block custom_js %}
+        <script src="{% static 'js/swiper.min.js' %}"></script>
+{% endblock %}
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        direction: 'horizontal',
+        loop: true,
+
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        speed:800,
+        autoplay:true,
+        loop : true,
+        loopAdditionalSlides : 2,
+        autoplayDisableOnInteraction : false,
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }
+    })
+</script>
+</body>
+
+</html>

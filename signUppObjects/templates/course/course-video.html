@@ -1,0 +1,91 @@
+{% extends 'course-base.html' %}
+{% load staticfiles %}
+{% block title %} {% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/muke/base.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/muke/common-less.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/muke/course/learn-less.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/aui.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mooc.css' %}" />
+     <link rel="stylesheet" type="text/css" href="{% static 'css/muke/course/common-less.css' %}">
+	<!--<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">-->
+	<!--<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">-->
+	<!--<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">-->
+
+{% endblock %}
+{% block breade %}
+    <section>
+	<div class="wp">
+		<div class="crumbs">
+			<ul>
+				<li><a href="/">首页</a>></li>
+                <li><a href="{% url 'course:courseList' %}">驾驶课程</a>></li>
+				<li><a href="{% url 'course:course_detail' course.id %}">支付界面</a>></li>
+                <li>订单详情</li>
+			</ul>
+		</div>
+	</div>
+</section>
+{% endblock %}
+{% block content %}
+    <div id="main">
+
+    <div class="course-info-main clearfix w has-progress">
+
+        <div class="info-bar clearfix">
+        <div class="content-wrap clearfix">
+            <div class="content">
+                <div class="mod-tab-menu">
+                    <ul class="course-menu clearfix">
+                        <li><a class="ui-tabs-active active" id="learnOn"  href="{% url 'course:course_info'  course.id  %}"><span>订单</span></a></li>
+                        <li><a id="commentOn" class="" href=" {% url 'course:course_comment'  course.id  %}"><span></span></a></li>
+                    </ul>
+                </div>
+
+                <form id="email_register_form" method="get" action="" autocomplete="off">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon0">课程名</span>
+                        <input value="{{ coach_order.course_name }}" type="text"  name="order_sn" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon">教练</span>
+                        <input value="汪鹏" type="text" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">金额</span>
+                        <input value="4680" type="text" name="order_mount" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon2">用户名</span>
+                        <input value="徐璟灏" type="text" name="coach_name" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon3">支付方式</span>
+                        <a href="?style=aplipay&order_sn={{ coach_order.order_sn }}"><span class="{% ifequal style 'aplipay' %} active2 {% endifequal %}">支付宝支付</span></a>
+                        <a href="?style=wechat&order_sn={{ coach_order.order_sn }}"><span class="{% ifequal style 'wechat' %} active2 {% endifequal %}">微信支付</span></a>
+
+                        <!--<input value="aplipay" type="text" name="pay_type" class="form-control" placeholder="Username" aria-describedby="basic-addon1">-->
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon4">实付金额</span>
+                        <input value="4580" type="text" name="pay_mount" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <a class="btn btn-default" href="{{ alipay_url }}" role="button">提交订单</a>
+                        {% csrf_token %}
+                </form>
+
+            </div>
+
+        </div>
+        <div class="clear"></div>
+
+    </div>
+
+</div>
+</div>
+
+{% endblock %}
+
+
+
+
