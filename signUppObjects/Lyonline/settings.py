@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -95,20 +94,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Lyonline.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'tubb_vesion2',
+        'NAME':'xxd_siagnUp',
         'USER':'root',
-        'PASSWORD':'sunck',
-        'HOST':'127.0.0.1',
+        'PASSWORD':'tbb123456',
+        'HOST':'39.107.243.161',
+        'PORT':'3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
