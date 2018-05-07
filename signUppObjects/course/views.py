@@ -2,7 +2,8 @@ from django.shortcuts import render,HttpResponse
 from django.views.generic import View
 from operation.models import UserCourse,UserFavorrate,CourseComments
 from django.db.models import Q
-from .models import Course
+from .models import Course,Cost
+from tradApp.models import Coupon
 
 # from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
@@ -99,10 +100,10 @@ class CourseInfoView(View):
 
 
 class GetCoupon(View):
-    def get(self,request,course_id):
-        course = Course.objects.get(id=course_id)
+    def get(self,request):
+        coupons = Coupon.objects.all()
 
-        return render(request,'getCoupon.html',{'course':course})
+        return render(request,'getCoupon.html')
 
 class AddCommentView(View):
     def post(self,request):
