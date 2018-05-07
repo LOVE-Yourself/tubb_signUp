@@ -39,21 +39,36 @@ class Course(models.Model):
     def __str__(self):
         return self.name
 
+#优势
 class Advantage(models.Model):
     course = models.ForeignKey(Course,verbose_name=u'课程')
     detail = models.CharField(max_length=100,verbose_name=u'描述')
     add_time = models.DateTimeField(default=datetime.now,verbose_name=u'添加时间')
-
+    def __str__(self):
+        return self.name
+#训练场地
 class Practiceplace(models.Model):
-    image = models.ImageField(upload_to='practicplace /%Y/%m', max_length=200, verbose_name=u'封面图')
+    title = models.CharField(default='训练场地1',max_length=20,verbose_name='场地名称')
+    #后期经纬度
+    image = models.ImageField(upload_to='practicplace /%Y/%m',verbose_name=u'封面图')
     detail = models.TextField(verbose_name=u'Tuobaba承诺')
     add_time = models.DateTimeField(default=datetime.now,verbose_name=u'添加时间')
-
-
+    def __str__(self):
+        return self.title
+#费用
 class Cost(models.Model):
     course = models.ForeignKey(Course,verbose_name=u'相关课程')
-    name = models.CharField(max_length=50,verbose_name=u'费用名称')
-    models.CharField(max_length=30,verbose_name=u'金额')
+    name = models.CharField(max_length=20,verbose_name=u'费用名称')
+    money = models.CharField(max_length=10,verbose_name=u'金额')
     add_time = models.DateTimeField(default=datetime.now,verbose_name=u'添加时间')
+    def __str__(self):
+        return self.name
+
+class Active(models.Model):
+    title = models.CharField(max_length=20,verbose_name='活动名称')
+    code = models.IntegerField(default=1,verbose_name='活动编号')
+    detail = models.TextField(verbose_name='活动规则')
+    def __str__(self):
+        return self.title
 
 

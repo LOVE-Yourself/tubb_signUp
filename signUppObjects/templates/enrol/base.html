@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -8,10 +9,10 @@
     <meta name="description" content=""/>
     <meta name="author" content="tuobaba"/>
     <title>杭州拓叭吧科技有限公司</title>
-    <link href="{% ststic 'css/bootstrap.min.css' %}" rel="stylesheet"/>
-    <link href="{% ststic 'css/tbb.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% ststic 'css/font/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% ststic 'css/focusStyle.css' %}">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/tbb.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/font/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/focusStyle.css' %}">
     {% block custom_css %} {% endblock %}
     <!--<link rel="shortcut icon" href="4-1.ico" type="image/x-icon" />-->
 
@@ -95,15 +96,15 @@
     </div>
 
 
-    <script src="{% ststic 'js/jquery-1.11.1.min.js' %}" type="text/javascript"></script>
-    <script type="text/javascript" src="{% ststic 'js/bootstrap.min.js' %}"></script>
-    <script src="{% ststic 'js/tbb.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}" type="text/javascript"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/tbb.js' %}" type="text/javascript"></script>
     <!--[if lt IE 9]>
-    <script src="{% ststic 'js/html5shiv.js' %}"></script>
-    <script src="{% ststic 'js/respond.min.js' %}"></script>
+    <script src="{% static 'js/html5shiv.js' %}"></script>
+    <script src="{% static 'js/respond.min.js' %}"></script>
     <![endif]-->
-    <script src="{% ststic 'js/utile.js' %}"></script>
-    <script src="{% ststic 'js/loading.js' %}"></script>
+    <script src="{% static 'js/utile.js' %}"></script>
+    <script src="{% static 'js/loading.js' %}"></script>
 
 
     {% block custom_js %} {% endblock %}
