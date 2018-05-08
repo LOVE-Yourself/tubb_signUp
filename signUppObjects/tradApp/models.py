@@ -66,8 +66,6 @@ class Coupon(models.Model):
     def __str__(self):
         return str(self.coupon_sn)
 
-
-
 class Coach_Orders(models.Model):
     Order_Status = (
         ('TRADE_SUCCESS','已支付'),

@@ -25,7 +25,6 @@ class CourseDetailView(View):
             lesson_count = course.lesson_set.all()#章节数
         except:
             print('[+]:相应课程下的章节出错')
-
         #相关推荐
         try:
             tag = course.tag

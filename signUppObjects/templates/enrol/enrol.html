@@ -10,10 +10,9 @@
 <div class="banner">
     <div class="swiper-container">
         <div class="swiper-wrapper">
-
-            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'images/indexbg2X.png' %}"></a></div>
-            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'images/indexbg2X.png' %}"></a></div>
-            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'images/indexbg2X.png' %}"></a></div>
+            <div class="swiper-slide"><a href="{{ bannner.url }}"><img src="{{ MEDIA_URL }}{{ banner.image }}"></a></div>
+            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'media/image/2016/12/default_big_14.png' %}"></a></div>
+            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'media/image/2016/12/default_big_14.png' %}"></a></div>
         </div>
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
@@ -55,32 +54,31 @@
                 <div class="curriculum">
                     <div class="pic"></div>
                     <div class="infDv">
-                        <div class="curriculumName"><span>C1超越期望优质课{{ course1.name }}</span></div>
+                        <div class="curriculumName"><span>{{ course1.name }}</span></div>
                         <div class="information">
-                            <span>科目一理论培训课，保险费，科目二，科目三训练费{{ course1.detail1 }}</span>
-                            <span class="emphasize"><br>+赠智能真车模拟系统4课时{{ course2.detail2 }</span>
+                            <span>{{ course1.detail1 }}</span>
+                            <span class="emphasize"><br>{{ course2.detail2 }</span>
                         </div>
-
                     </div>
                     <div class="priceDiv">
-                        <span class="emphasize price">￥4850{{ course1.cost_new }}</span>
-                        <div class="detailBtn"><span>查看详情</span></div>
+                        <span class="emphasize price">￥{{ course1.cost_new }}</span>
+                        <div class="detailBtn"><span><a href="">查看详情</a></span></div>
                     </div>
                 </div>
             </div>
             <div class="  c2 col-md-6 col-sm-6 col-xs-12">
                 <div class="curriculum">
-                    <div class="pic"></div>
+                    <div class="pic"><img src="{% static %}"></div>
                     <div class="infDv">
                         <div class="curriculumName"><span>{{ course2.cost_new }}</span></div>
                         <div class="information">
                             <span>{{ course2.detail1 }}</span>
-                            <span class="emphasize"><br>+赠智能真车模拟系统4课时{{ course2.detail2}}</span>
+                            <span class="emphasize"><br>+{{ course2.detail2}}</span>
                         </div>
                     </div>
                     <div class="priceDiv">
-                        <span class="emphasize price">￥5850{{ course2.cost_new }}</span>
-                        <div class="detailBtn"><span>查看详情</span></div>
+                        <span class="emphasize price">￥{{ course2.cost_new }}</span>
+                        <div class="detailBtn"><span><a href="">查看详情</a></span></div>
                     </div>
                 </div>
 
