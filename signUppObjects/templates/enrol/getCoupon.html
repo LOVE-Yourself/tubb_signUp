@@ -12,7 +12,7 @@
 <div class="banner">
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><a href="getCoupon.html"><img src=".././static/images/indexbg2X.png"></img></a></div>
+            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'images/indexbg2X.png' %}"></a></div>
             <div class="swiper-slide"><div></div></div>
             <div class="swiper-slide">Slide 3</div>
         </div>
@@ -42,7 +42,7 @@
                     <div class="rightDiv">
                         <div class="top">
                             <span class="limit">【限C1报名】</span>
-                            <div class="getCouponBtn"><span>领取></span><input class="couponId" value="89" style="display: none"></div>
+                            <div class="getCouponBtn"><span>领取></span><input class="couponId" value="{{ coupon.id }}" style="display: none"></div>
                         </div>
                         <div class="expireDate"><span>自领取之日起30天有效</span></div>
                     </div>
@@ -144,6 +144,4 @@
         }
     })
 </script>
-</body>
 
-</html>

@@ -24,9 +24,9 @@ class PracticeplaceAdmin(object):
 
 class CostAdmin(object):
 
-    list_display = ['course', 'name','add_time',]
-    search_fields = ['course', 'name',]
-    list_filter = ['course', 'name','add_time',]
+    list_display = ['course', 'name','money','add_time',]
+    search_fields = ['course', 'name','money']
+    list_filter = ['course', 'name','money','add_time']
 
 xadmin.site.register(Course,CourseAdmin)
 xadmin.site.register(Advantage,AdvantageAdmin)
