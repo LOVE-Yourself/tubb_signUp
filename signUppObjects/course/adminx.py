@@ -1,6 +1,5 @@
-from .models import Course,Advantage,Practiceplace,Cost
+from .models import Course,Advantage,Practiceplace,Cost,Active
 import xadmin
-
 
 
 class CourseAdmin(object):
@@ -18,9 +17,9 @@ class AdvantageAdmin(object):
 
 class PracticeplaceAdmin(object):
 
-    list_display = ['image', 'detail','add_time',]
-    search_fields = ['image', 'detail',]
-    list_filter = ['image', 'detail','add_time',]
+    list_display = ['title','image', 'detail','add_time',]
+    search_fields = ['title','image', 'detail',]
+    list_filter = ['title','image', 'detail','add_time',]
 
 class CostAdmin(object):
 
@@ -28,9 +27,17 @@ class CostAdmin(object):
     search_fields = ['course', 'name','money']
     list_filter = ['course', 'name','money','add_time']
 
+
+class ActiveAdmin(object):
+    list_display = ['title', 'code','detail','add_time',]
+    search_fields = ['title', 'code','detail']
+    list_filter = ['title', 'code','detail','add_time',]
+
+
+
 xadmin.site.register(Course,CourseAdmin)
 xadmin.site.register(Advantage,AdvantageAdmin)
 xadmin.site.register(Practiceplace,PracticeplaceAdmin)
 xadmin.site.register(Cost,CostAdmin)
-
+xadmin.site.register(Active,ActiveAdmin)
 

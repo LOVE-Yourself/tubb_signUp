@@ -24,7 +24,6 @@ import xadmin
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^users/',include('users.urls',namespace='user')),
-    url(r'^organiz/',include('organization.urls',namespace='org')),
     url(r'^captcha/', include('captcha.urls')),
     url(r'^$',TemplateView.as_view(template_name='index.html'),name='index'),
     url(r'^media/(?P<path>.*)$',serve,{'document_root':MEDIA_ROOT}),

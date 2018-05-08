@@ -37,7 +37,7 @@ class Banner(models.Model):
     title = models.CharField(max_length=100,verbose_name=u'标题')
     image = models.ImageField(max_length=200,upload_to='banner/%y/%m',verbose_name=u'轮播')
     url = models.URLField(default='http://192.168.192.136:8000/course/get_coupon/1',max_length=200,verbose_name=u'访问地址')
-    detail = models.CharField(default='新春活动1',verbose_name=u'活动描述')
+    detail = models.CharField(max_length=20,default='新春活动1',verbose_name=u'活动描述')
     add_time = models.DateTimeField(default=datetime.now,verbose_name=u'添加日期')
 
     class Meta:

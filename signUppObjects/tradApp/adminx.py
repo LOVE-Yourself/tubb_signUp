@@ -1,7 +1,6 @@
-from .models import Coach_Orders,Simulator_Orders,Coupon,UserCoupon
+from .models import Coach_Orders,Simulator_Orders,Coupon
 
 import xadmin
-
 
 class Coach_OrdersAdmin(object):
 
@@ -19,17 +18,14 @@ class Simulator_OrdersAdmin(object):
 
 
 class CouponAdmin(object):
-    list_display = ['course','code','coupon_sn','pay_type','order_status','order_status','coupon_mount','end_detail','belong_activ','use_time','add_time']
-    search_fields = ['course','code','coupon_sn','pay_type','order_status','order_status','coupon_mount','belong_activ','end_detail']
-    list_filter = ['course','code','coupon_sn','pay_type','order_status','order_status','coupon_mount','end_detail','belong_activ','use_time','add_time']
+    list_display = ['course','active','code','coupon_sn','order_status','order_status','coupon_mount','end_detail','use_time','add_time']
+    search_fields = ['course','active','code','coupon_sn','order_status','order_status','coupon_mount','end_detail']
+    list_filter = ['course','active','code','coupon_sn','order_status','order_status','coupon_mount','end_detail','use_time','add_time']
 
 
-class UserCouponAdmin(object):
-    list_display = ['user','coupon','add_time']
-    search_fields = ['user','coupon']
-    list_filter = ['user','coupon','add_time']
+
 
 xadmin.site.register(Coach_Orders,Coach_OrdersAdmin)
 xadmin.site.register(Simulator_Orders,Simulator_OrdersAdmin)
 xadmin.site.register(Coupon,CouponAdmin)
-xadmin.site.register(UserCoupon,UserCouponAdmin)
+

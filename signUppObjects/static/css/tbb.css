@@ -9,6 +9,7 @@
     color: #545454;
     font-family: "微软雅黑"
 }
+
 .user {
     display: flex;
     /* width: 94px; */
@@ -18,20 +19,24 @@
     position: relative;
     bottom: -14px;
 }
-.user  span.userName {
+
+.user span.userName {
     color: #00CA78;
     margin-left: 4px;
 }
+
 .userIcon {
     width: 24px;
     height: 24px;
     overflow: hidden;
     border-radius: 21px;
 }
-.userIcon img{
+
+.userIcon img {
     width: 24px;
     height: 24px;
 }
+
 .clear {
     clear: both;
     height: 1px
@@ -147,7 +152,7 @@ a.tbb-a2:hover, a.tbb-a2:active {
     color: #4fc169;
 }
 
-.login, .register  {
+.login, .register {
     transition: all 0.2s;
     float: left;
     display: flex;
@@ -235,25 +240,30 @@ a:focus, a:hover {
     top: 0;
     z-index: -999;
 }
-.banner> div{
+
+.banner > div {
     height: 100%;
 }
+
 .banner .swiper-slide {
     display: flex;
     justify-content: center;
     overflow: hidden;
 }
-.banner .swiper-slide img{
+
+.banner .swiper-slide img {
     width: 768px;
     height: auto;
 }
+
 .blankHeight {
     height: 54px;
     width: 100%;
 }
+
 @media (min-width: 768px) {
 
-    .banner .swiper-slide img{
+    .banner .swiper-slide img {
         width: 100%;
         height: auto;
     }
@@ -1273,9 +1283,11 @@ button.submit {
         width: 100%;
     }
 
-    .login, .register  ,.user{
+    .login, .register, .user {
         margin: -18px 0 0 6px;
-    }  .user{
+    }
+
+    .user {
         margin: -38px 0 0 6px;
     }
 }
@@ -1371,19 +1383,16 @@ button.submit {
 
 .curriculum .pic {
     width: 100%;
-    height: 170px;
 
 }
 
-.c1 .pic {
-    background: url("../images/c1pic2x.png") no-repeat center;
-    background-size: 100%;
+.c1 .pic  img, .c2 .pic  img{
+    width: 100%;
+    height: auto;
 
 }
 
 .c2 .pic {
-    background: url("../images/c2pic2x.png") no-repeat center;
-    background-size: 100%;
 
 }
 
@@ -1528,6 +1537,15 @@ button.submit {
 
 }
 
+.chosenCoupon .getCouponDiv .rightDiv .getCouponBtn span {
+    color: #FF0057;
+    font-size: 1.4rem;
+}
+
+.chosenCoupon .getCouponDiv.expire .rightDiv .getCouponBtn span {
+    color: #CCCCCC;
+}
+
 .getCouponDiv .rightDiv .top {
     border-left: solid white 1px;
     display: flex;
@@ -1537,6 +1555,16 @@ button.submit {
     align-items: center;
     margin-top: 14px;
 
+}
+
+.chosenCoupon .getCouponDiv .rightDiv .top {
+    height: 62px;
+
+}
+
+.chosenCoupon .getCouponDiv .rightDiv span.limit {
+    font-size: 1.4rem;
+    font-weight: 100;
 }
 
 .getCouponDiv .rightDiv span.limit {
@@ -1605,11 +1633,6 @@ span.activity {
         height: 112px;
     }
 
-    .curriculumDetial .pic {
-        height: 200px;
-        background: url("../images/c1square2x.png") no-repeat center;
-        background-size: 100%;
-    }
 }
 
 .curriculumDetial {
@@ -1618,11 +1641,14 @@ span.activity {
 }
 
 .curriculumDetial .pic {
-    height: 200px;
-    background: url("../images/c1square.png") no-repeat center;
-    background-size: 100%;
-    float: left;
+    /*height: 200px;*/
+
 }
+
+.curriculumDetial .pic img{
+    width: 100%;
+}
+
 
 .curriculumDetial
 .topDiv {
@@ -1639,6 +1665,7 @@ span.activity {
     flex-flow: column;
     justify-content: space-around;
 }
+
 .curriculumDetial .tbbServer {
     width: 20%;
     float: left;
@@ -1663,10 +1690,12 @@ span.activity {
 .curriculumDetial .topDiv span {
     color: #00CA78;
     font-size: 1.8rem;
-}.curriculumDetial .topDiv .oldPrize {
+}
+
+.curriculumDetial .topDiv .oldPrize {
     color: #999999;
     font-size: 1.8rem;
-     text-decoration-line: line-through;
+    text-decoration-line: line-through;
 }
 
 .curriculumDetial {
@@ -1685,27 +1714,33 @@ span.activity {
     align-items: center;
     justify-content: center;
 }
-.curriculumDetial .entryBtn span{
+
+.curriculumDetial .entryBtn span {
     color: white;
     font-size: 1.4rem;
 }
-.tbbPromise h4{
+
+.tbbPromise h4 {
     color: #00CA78;
 
 }
-.promiseDiv >div>div{
+
+.promiseDiv > div > div {
     background: white;
     padding: 12px;
     height: 228px;
 
 }
-.promiseDiv >div:first-of-type>div {
+
+.promiseDiv > div:first-of-type > div {
     margin-right: 24px;
 }
-.promiseDiv >div:last-of-type {
+
+.promiseDiv > div:last-of-type {
 
 }
-.promiseDiv .pic{
+
+.promiseDiv .pic {
     width: 490px;
     height: 208px;
     background: url("../images/practicePlace2x.png") no-repeat;
@@ -1713,21 +1748,23 @@ span.activity {
 }
 
 @media (max-width: 768px) {
-    .promiseDiv >div>div{
+    .promiseDiv > div > div {
 
         height: 158px;
 
     }
-    .promiseDiv .pic{
+
+    .promiseDiv .pic {
         width: 322px;
         height: 148px;
         background: url("../images/practicePlace.png");
     }
+
     .curriculumDetial .entryBtn {
-      width: 100%;
+        width: 100%;
     }
 
-    }
+}
 
 .chargeDetail {
     width: 100%;
@@ -1737,7 +1774,7 @@ span.activity {
     box-shadow: 2px 2px 2px 1px #e7e7e7;
 }
 
-.chargeDetail .leftDiv >div {
+.chargeDetail .leftDiv > div {
     display: flex;
     height: 30px;
     align-items: center;
@@ -1746,17 +1783,20 @@ span.activity {
     height: 50px;
     box-shadow: 0 1px 2px 0px #CCCCCC;
 }
-.chargeDetail .leftDiv >div span {
+
+.chargeDetail .leftDiv > div span {
     display: flex;
     width: 16.666%;
     text-align: center;
     align-items: center;
     justify-content: center;
 }
-.explain{
-    background:rgba(242,247,255,1);
+
+.explain {
+    background: rgba(242, 247, 255, 1);
     padding: 12px;
 }
+
 .chargeDetail .rightDiv {
     display: flex;
     align-items: center;
@@ -1764,7 +1804,8 @@ span.activity {
     height: 150px;
     padding: 50px 108px;
 }
-.chargeDetail .rightDiv span{
+
+.chargeDetail .rightDiv span {
     color: #00CA78;
     text-align: center;
 
@@ -1779,21 +1820,30 @@ span.activity {
         padding: 20px 108px;
     }
 
+    .orderProgress {
+        position: absolute;
+        top: 43px;
+        width: 68%;
+        left: 17%;
+    }
+
 }
 
-.orderWriteProgress{
+.orderWriteProgress {
     position: relative;
     width: 100%;
     background: white;
     height: 110px;
 
 }
+
 .orderProgress {
     position: absolute;
     top: 43px;
     width: 52%;
     left: 24%;
 }
+
 .orderProgress .bg {
     top: 50px;
     height: 8px;
@@ -1807,6 +1857,7 @@ span.activity {
     justify-content: space-between;
     box-shadow: inset 1px 1px #bfbdbd;
 }
+
 .orderProgress .bg > div {
     position: relative;
     height: 32px;
@@ -1823,11 +1874,13 @@ span.activity {
     /* border: 1px solid; */
     box-shadow: inset 0px 2px #bfbdbd;
 }
+
 .orderProgress .bg .active .pointBg {
     animation: currentStep .8s infinite alternate-reverse;
 }
+
 .orderProgress .bg .pointBg {
-    z-index: 999;
+    z-index: 100;
     position: relative;
     /* border: 5px #56a000 solid; */
     width: 28px;
@@ -1840,6 +1893,7 @@ span.activity {
     text-align: center;
     background: #00CA78;
 }
+
 .stepText {
     position: absolute;
     bottom: -22px;
@@ -1847,28 +1901,516 @@ span.activity {
     min-width: 120px;
     text-align: center;
 }
+
 .pointBg span {
     color: white;
     font-size: 1.4rem;
 }
+
 .active ~ div .pointBg {
-    background: rgba(238,238,238,1) !important;
+    background: rgba(238, 238, 238, 1) !important;
 }
+
 .active ~ div .pointBg span {
     color: #CCCCCC !important;
-}.active ~ div  .stepText {
+}
+
+.active ~ div .stepText {
     color: #666666 !important;
 }
 
+.orderForm {
+    display: flex;
+    flex-flow: wrap;
+}
 
- .orderForm .left ,
- .orderForm .right{
-      padding: 10px;
- }
-.orderForm .left >div,
-.orderForm .right >div{
+.orderForm .left,
+.orderForm .right {
+    padding: 10px;
+}
+
+.orderForm .left > div,
+.orderForm .right > div {
     padding: 10px;
     background: white;
-    margin: 12px 0;
+    margin: 8px 0;
     min-height: 30px;
+}
+
+.orderForm span.error {
+    margin-left: 12px;
+    color: #FF0000;
+}
+
+.orderForm .right > div {
+    height: 92%;
+}
+
+.orderForm .left > div > div {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    margin-top: 12px;
+
+}
+
+.orderForm .cPrice {
+    float: right;
+    color: #0fcb77;
+    font-size: 1.8rem;
+    display: block;
+    line-height: 1;
+}
+
+.orderForm .basicInf {
+    display: block !important;
+}
+
+.orderForm .left > div > div > div {
+    display: flex;
+    flex-flow: row;
+}
+
+.payDiv {
+    width: 30%;
+}
+
+.primeCost, .useCoupon, .finalCost {
+    display: flex;
+    flex-flow: row;
+    padding-right: 20px !important;
+}
+
+.primeCost span:first-of-type, .useCoupon span:first-of-type, .finalCost span:first-of-type {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+
+}
+
+.primeCost div:first-of-type span, .useCoupon div:first-of-type span, .finalCost div:first-of-type span {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    color: #999999;
+
+}
+
+.finalCost div:last-of-type span {
+    color: #00CA78;
+    font-size: 1.8rem;
+
+}
+
+.paySuccessMain {
+    background: #F5F5F5;
+    padding: 12px;
+}
+
+.paySuccessMain .container {
+    background: white;
+}
+
+.payBtn {
+    width: 94px;
+    height: 28px;
+    background: #00CA78;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    float: right;
+}
+
+.checkSuccessIcon {
+    width: 80px;
+    height: 100px;
+    background: url("../images/paySuccess2x.png") center no-repeat;
+    background-size: 100%;
+}
+
+.checkSuccessIcon + span {
+    font-size: 3rem;
+    color: #666666;
+}
+
+@media (max-width: 768px) {
+    .checkSuccessIcon {
+        width: 50px;
+        height: 50px;
+        background: url("../images/paySuccess.png") center no-repeat;
+        background-size: 100%;
+
+    }
+}
+
+.paySuccessDiv {
+    width: 80%;
+    height: 586px;
+    margin: 0 auto;
+    background: white;
+    display: flex;
+    /* align-items: center; */
+    flex-flow: column;
+}
+
+.paySuccessDiv span {
+    color: #999999;
+
+}
+
+.paySuccessDiv p {
+
+    color: #999999;
+}
+
+.paySuccessDiv > div {
+    margin-top: 20px;
+}
+
+.showSuccess {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    align-self: center;
+    align-items: center;
+    border-bottom: 2px solid #CCCCCC;
+    padding: 12px;
+}
+
+.orderInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderInfo div span:last-of-type {
+    font-size: 1.4rem;
+    color: #58BF30;
+}
+.orderInfo .createTime  span:last-of-type{
+    font-size: 1.4rem;
+    color: black;
+}
+.remarks {
+    display: flex;
+    margin-top: 50px!important;
+}
+
+.lookOrderBtn {
+    width: 94px;
+    height: 28px;
+    background: #00CA78;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    float: right;
+    color: white;
+}
+
+.payBtnDiv {
+    background: whitesmoke !important;;
+}
+
+.payBtn span {
+    color: white;
+    text-align: center;
+
+}
+
+.orderForm .right h3 {
+    color: #00CA78;
+}
+
+@media (max-width: 768px) {
+
+    .orderProgress {
+        position: absolute;
+        top: 43px;
+        width: 68%;
+        left: 17%;
+    }
+
+    .orderForm .left {
+        order: 2;
+    }
+
+    .orderForm .right {
+        order: 1;
+        padding: 10px;
+    }
+
+}
+.individualCenter.container {
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+.operationMenu{
+    height: 555px;
+    background: white;
+}
+.panel-default > .panel-heading {
+    position: relative;
+    color: #333;
+    background-color: #ffffff;
+}
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+     border: none;
+    /* -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
+    /* box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
+}
+.panel-heading li.fa {
+    position: absolute;
+    right: 40px;
+}
+.panel-body  i.fa.fa-cog{
+    font-size: 1.8rem;
+}
+ .panel-title > a{
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+.panel-body {
+   padding-left: 32px;
+}
+.icon img{ width: 100%; height: auto;max-width: 100%; display: block; }
+
+
+.icon{
+    display: inline-block;
+    margin: 0 4px;
+    width: 20px;
+    float: left;
+}
+
+
+.personalRight{
+    height: 555px;
+
+}
+
+.displayContent{
+    margin-left: 5%;
+    width: 95%;
+    background: white;
+    height: 100%;
+    padding: 18px;
+
+}
+.displayContent h4{
+    margin-left: 16px;
+}
+.entryOrder{
+    width: 100%;
+    border: #EEEEEE solid 1px;
+
+}
+.entryOrder .formHead ,.myCoupon .formHead {
+    width: 100%;
+    height: 56px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    background: #EEEEEE;
+}
+.orderNum{
+    padding-left: 16px;
+    height: 48px;
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px #eeeeee solid;
+}
+
+.orderNum span:first-of-type{
+     color: #999999;
+    margin-top: 18px;
+}
+.orderNum span:last-of-type{
+    color: #666666;
+    font-size: 1.6rem;
+
+}
+.entryOrder .formHead span, .myCoupon .formHead span{
+    color: #666666;
+
+}
+.entryOrder .formBody,.myCoupon  .formBody{
+    width: 100%;
+    height: 38px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: baseline;
+    color: #666666;
+    margin-top: 16px;
+}
+
+.entryOrder .formBody span.curriculumName {
+    color: #666666;
+    font-size: 1.2rem;
+
+}
+
+.entryOrder .formBody span.prize {
+    color: #00CA78;
+    font-size: 1.6rem;
+}.entryOrder .formBody span.time {
+    color: #666666;
+    font-size: 1rem;
+}
+.getCouponDiv .rightDiv .superposed{
+    background: white;
+    border-radius: 4px;
+    width: 50px;
+}
+.getCouponDiv .rightDiv .superposed span {
+    color: #FF0057;
+    font-size: 1.6rem;
+}
+
+.getCouponDiv .rightDiv {
+    width: 60%;
+
+}
+
+ .getCouponDiv .rightDiv .superposed span {
+    color: #FF0057;
+    font-size: 1rem;
+}
+
+ .getCouponDiv.expire .rightDiv .superposed span {
+    color: #CCCCCC;
+}
+.superposed span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: white;
+
+}
+
+.myCoupon  .getCouponDiv .rightDiv .top {
+    border-left: solid white 1px;
+    display: flex;
+    flex-flow: column;
+    height: 68px;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 14px;
+}
+.myCoupon .getCouponDiv .rightDiv .getCouponBtn span {
+    color: #FF0057;
+    font-size: 1.4rem;
+}
+.myCoupon .getCouponDiv.expire .rightDiv .getCouponBtn span {
+    color: #CCCCCC;
+    font-size: 1.4rem;
+}
+.myCoupon  .getCouponDiv .leftDiv .price {
+    font-size: 4.8rem;
+
+}
+ .formHead span {
+    display: inline-block;
+    width: 74px;
+    padding: 12px;
+    text-align: center;
+    color: #666666;
+}
+
+.myCoupon .formHead span {
+    display: inline-block;
+    width: 64px;
+    padding: 18px 0;
+    text-align: center;
+    color: #666666;
+}
+
+
+.myCoupon .formHead span.active {
+    border-bottom: 2px solid #00CA78;
+    color: #00CA78;
+}
+
+
+.tabContent{
+    width: 100%;
+}
+
+
+.displayContent{
+    display: none;
+}
+
+.displayContent.active{
+    display: block;
+}.tabContent{
+    display: none;
+     flex-flow: row wrap;
+     justify-content: space-around;
+}
+
+.tabContent.active{
+    display: flex;
+}
+
+
+.personalRight .userInf{
+    display: flex;
+    flex-flow: column wrap;
+    margin-left: 24px;
+
+}
+
+.userInformation h4 {
+    padding: 8px 16px;
+    border-bottom: 1px solid #CCCCCC;
+    margin-bottom: 0px;
+}
+.personalRight  .userInformation .userInf>div{
+    margin-top: 12px;
+}
+
+.personalRight .userInformation .userImage {
+    padding: 12px;
+    border-bottom: 1px solid #CCCCCC;
+}
+.personalRight .userInf .userIconDiv{
+    display: flex;
+    flex-flow: column wrap;
+    width: 120px;
+    align-items: center;
+}
+
+.personalRight .userInf  div#userIcon {
+    width: 120px;
+    height: 120px;
+}.personalRight .userInf  div#userIcon {
+    width: 100%;
+    height: auto;
+}
+.personalRight  .userInf span{
+    align-self: flex-end;
+}
+.personalRight .userInf .userIconDiv span{
+    color: #666666;
+    align-self: center;
+    margin-top: 10px;
+
+}
+.personalRight .userInf .nicknameDiv,.personalRight .userInf .userPhoneDiv,.personalRight .userInf .realNameDiv{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.personalRight .userInf .nicknameDiv span:first-of-type,.personalRight .userInf .userPhoneDiv span:first-of-type,.personalRight .userInf .realNameDiv span:first-of-type{
+   display: inline-block;
+    width:80px ;
+    color: #999999;
+    text-align: right;
+    padding: 0 12px;
 }

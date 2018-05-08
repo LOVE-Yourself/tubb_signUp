@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse
 from django.views.generic import View
-from operation.models import UserCourse,UserFavorrate,CourseComments
+from operation.models import UserCourse
 from django.db.models import Q
 from .models import Course,Cost
 from tradApp.models import Coupon
@@ -25,7 +25,6 @@ class CourseDetailView(View):
             lesson_count = course.lesson_set.all()#章节数
         except:
             print('[+]:相应课程下的章节出错')
-
         #相关推荐
         try:
             tag = course.tag

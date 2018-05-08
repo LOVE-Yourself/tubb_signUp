@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import datetime
 from users.models import UserProfile
-from course.models import Course
+from course.models import Course,Active
 # Create your models here.
 
 #模拟器订单
@@ -43,13 +43,14 @@ class Coupon(models.Model):
     Coupon_Status = (('used','已使用'),
                      ('onused','未使用'),
                      )
-    Pay_Type = (
-        ('wechat','微信'),
-        ('aplipay','支付宝'),
-    )
+    # Pay_Type = (
+    #     ('wechat','微信'),
+    #     ('aplipay','支付宝'),
+    # )
     course = models.ForeignKey(Course,verbose_name='课程')
-    belong_course = models.CharField(default='限C1报名',verbose_name='所属课程')
-    code = models.CharField(max_length=20,default='1805071231',averbose_name=u'优惠券码')
+    active = models.ForeignKey(Active,verbose_name='活动')
+    belong_course = models.CharField(max_length=20,default='限C1报名',verbose_name='所属课程')
+    code = models.CharField(max_length=20,default='1805071231',verbose_name=u'优惠券码')
     coupon_sn = models.CharField(max_length=20,verbose_name=u'优惠劵号')
     # pay_type = models.CharField(choices=Pay_Type, max_length=10, verbose_name='支付方式')
     order_status = models.CharField(choices=Coupon_Status,max_length=10,verbose_name='使用状态')
@@ -57,25 +58,13 @@ class Coupon(models.Model):
     end_detail = models.TextField(default='自领取之日起30天有效',verbose_name='截止时间')
     use_time = models.DateTimeField(default=datetime.now,null=True, blank=True, verbose_name='支付时间')
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
-    belong_activ = models.CharField(default='新春活动',max_length=20,verbose_name='所属活动')
+    # belong_activ = models.CharField(default='新春活动',max_length=20,verbose_name='所属活动')
     class Meta:
         verbose_name = u'优惠劵'
         verbose_name_plural = verbose_name
 
     def __str__(self):
         return str(self.coupon_sn)
-
-class UserCoupon(models.Model):
-    user = models.ForeignKey(UserProfile, verbose_name=u'用户')
-    coupon = models.ForeignKey(Coupon, verbose_name=u'优惠劵')
-    add_time = models.DateTimeField(default=datetime.now, verbose_name=u'添加时间')
-
-    class Meta:
-        verbose_name = u'用户优惠劵'
-        verbose_name_plural = verbose_name
-    def __str__(self):
-        return self.name
-
 
 class Coach_Orders(models.Model):
     Order_Status = (
