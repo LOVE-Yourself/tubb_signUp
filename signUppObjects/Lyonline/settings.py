@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'captcha',
     'pure_pagination',
     # 'apps.operation',
-    'organization',
+    #'organization',
     'course',
     'tradApp',
     'driverSchool'

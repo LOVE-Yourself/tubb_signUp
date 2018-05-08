@@ -20,9 +20,9 @@ class TelNumVerifyRecordAdmin(object):
 
 class BannerAdmin(object):
 
-    list_display = ['title','image','url','index','add_time']
-    search_fields = ['title','image','url','index']
-    list_filter = ['title','image','url','index','add_time']
+    list_display = ['title','image','url','detail','add_time']
+    search_fields = ['title','image','url','detail']
+    list_filter = ['title','image','url','detail','add_time']
 
 xadmin.site.register(TelNumVerifyRecord,TelNumVerifyRecordAdmin)
 xadmin.site.register(Banner,BannerAdmin)
