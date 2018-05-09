@@ -18,10 +18,9 @@ class Simulator_OrdersAdmin(object):
 
 
 class CouponAdmin(object):
-    list_display = ['course','active','code','coupon_sn','order_status','order_status','coupon_mount','end_detail','use_time','add_time']
-    search_fields = ['course','active','code','coupon_sn','order_status','order_status','coupon_mount','end_detail']
-    list_filter = ['course','active','code','coupon_sn','order_status','order_status','coupon_mount','end_detail','use_time','add_time']
-
+    list_display = ['course','active','belong_course','code','coupon_sn','status','coupon_mount','end_detail','use_time','add_time']
+    search_fields = ['course','active','belong_course','code','coupon_sn','status','coupon_mount','end_detail']
+    list_filter = ['course','active','belong_course','code','coupon_sn','status','coupon_mount','end_detail','use_time','add_time']
 
 
 

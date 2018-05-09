@@ -8,8 +8,6 @@ from django.views.generic import View
 from .forms import CoachOrdersForm
 from .models import Coach_Orders
 
-
-
 from urllib.parse import urlparse, parse_qs
 from utils.alipay import AliPay
 from Lyonline.settings import private_key_path,ali_pub_key_path

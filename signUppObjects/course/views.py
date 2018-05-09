@@ -70,7 +70,7 @@ class CourseInfoView(View):
         #     other_course_list.append(user_course.course)
         #系统生成订单 和支付的url  随机订单号
         # request.post('username','') 正常获取
-        # 现在是get  后来要改成  post
+        # 现在是get  后来要改成  post 
         #判断支付方式
         style_pay = request.GET.get('style','')
         if style_pay == '':
@@ -100,12 +100,25 @@ class CourseInfoView(View):
             payUrl = get_alipayUrl(coachOrder.order_sn, coachOrder.pay_mount)
         return render(request,'course-video.html',{'course':course,'coach_order':coachOrder,'alipay_url':payUrl,'style':pay_type})
 
-
+from .models import Active
 class GetCoupon(View):
-    def get(self,request):
-        coupons = Coupon.objects.all()
+    def get(self,request,active_id):
+        active = Active.objects.get(code=active_id)
+        coupons = Coupon.objects.filter(active=active)
+        banners = Banner.objects.all()
+        return render(request,'getCoupon.html',{'coupons':coupons,'active':active,'banners':banners})
+    def post(self,request,active_id):
+        #判断登录状态
+        if request.user.is_authenticated():
+            coupon_id = request.POST.get('coupon_id','')
+            coupon = Coupon.objects.get(id=coupon_id)
+            coupon.status = ''
 
-        return render(request,'getCoupon.html')
+        active = Active.objects.get(code=active_id)
+        coupons = Coupon.objects.filter(active=active)
+        banners = Banner.objects.all()
+        return render(request,'getCoupon.html',{'coupons':coupons,'active':active,'banners':banners})
+
 
 class AddCommentView(View):
     def post(self,request):

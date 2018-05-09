@@ -116,8 +116,6 @@ $(".tabs span").click(function () {
 
 })
 
-
-
 $('.tabs span').each(function (index, item) {
     $(item).click(function () {
         $('.tabs span').removeClass("active");

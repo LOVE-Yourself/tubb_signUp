@@ -47,13 +47,14 @@ class Coupon(models.Model):
     #     ('wechat','微信'),
     #     ('aplipay','支付宝'),
     # )
+
     course = models.ForeignKey(Course,verbose_name='课程')
     active = models.ForeignKey(Active,verbose_name='活动')
     belong_course = models.CharField(max_length=20,default='限C1报名',verbose_name='所属课程')
-    code = models.CharField(max_length=20,default='1805071231',verbose_name=u'优惠券码')
-    coupon_sn = models.CharField(max_length=20,verbose_name=u'优惠劵号')
+    code = models.CharField(blank=True,null=True,max_length=20,default='1805071231',verbose_name=u'优惠券码')
+    coupon_sn = models.CharField(blank=True,null=True,max_length=20,verbose_name=u'优惠劵号')
     # pay_type = models.CharField(choices=Pay_Type, max_length=10, verbose_name='支付方式')
-    order_status = models.CharField(choices=Coupon_Status,max_length=10,verbose_name='使用状态')
+    status = models.CharField(choices=Coupon_Status,max_length=10,verbose_name='使用状态')
     coupon_mount = models.CharField(max_length=10,default='200', verbose_name='面额')
     end_detail = models.TextField(default='自领取之日起30天有效',verbose_name='截止时间')
     use_time = models.DateTimeField(default=datetime.now,null=True, blank=True, verbose_name='支付时间')

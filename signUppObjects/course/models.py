@@ -69,8 +69,10 @@ class Active(models.Model):
     class Meta:
         verbose_name = u'活动'
         verbose_name_plural = verbose_name
+
     def __str__(self):
         return self.title
-    def get_coupons(self):
-        return self.coupon_set.all()
+
+    # def get_coupons(self):
+    #     return self.coupon_set.all()
 
