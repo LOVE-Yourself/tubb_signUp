@@ -38,6 +38,8 @@ class Advantage(models.Model):
 class Practiceplace(models.Model):
     title = models.CharField(default='训练场地1',max_length=20,verbose_name='场地名称')
     #后期经纬度
+    #long_td = models.DecimalField(max_digits=10, decimal_places=7,verbose_name='经度')#精度
+    #lati_td = models.DecimalField(max_digits=10,decimal_places=7,verbose_name='纬度')#纬度
     image = models.ImageField(upload_to='practicplace /%Y/%m',verbose_name=u'封面图')
     detail = models.TextField(verbose_name=u'Tuobaba承诺')
     add_time = models.DateTimeField(default=datetime.now,verbose_name=u'添加时间')

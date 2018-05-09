@@ -10,9 +10,9 @@
 <div class="banner">
     <div class="swiper-container">
         <div class="swiper-wrapper">
+            {% for banner in banners %}
             <div class="swiper-slide"><a href="{{ bannner.url }}"><img src="{{ MEDIA_URL }}{{ banner.image }}"></a></div>
-            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'media/image/2016/12/default_big_14.png' %}"></a></div>
-            <div class="swiper-slide"><a href="getCoupon.html"><img src="{% static 'media/image/2016/12/default_big_14.png' %}"></a></div>
+            {% endfor %}
         </div>
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>

@@ -4,6 +4,7 @@ from operation.models import UserCourse
 from django.db.models import Q
 from .models import Course,Cost
 from tradApp.models import Coupon
+from users.models import Banner
 
 # from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
@@ -12,7 +13,9 @@ class Courselistview(View):
 
         course1 = Course.objects.get(id=1)
         course2 = Course.objects.get(id=2)
-        return render(request,'enrol.html',{'course1':course1,'course2':course2})
+        banners = Banner.objects.all()
+
+        return render(request,'enrol.html',{'course1':course1,'course2':course2,'banners':banners})
 
 class CourseDetailView(View):
     def get(self,request,course_id):
