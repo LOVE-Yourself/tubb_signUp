@@ -69,13 +69,15 @@ $(".curriculum  .detailBtn").click(function () {
 })
 $(".getCouponDiv.available .getCouponBtn").click(function () {
     var element = this;
-    var coupon = $(element).find("input.couponId").val();
+    var coupon_id = $(element).find("input.couponId").val();
+    var active_id = $(element).find("input.activeId").val();
     $.ajax({
         type: 'POST',
-        url: "",
-        data: coupon,
+        url: "http://192.168.192.137:8000/course/get_coupon/",
+        data: {coupon_id:coupon_id,active_id:active_id},
         success: function (data) {
             if (data.status == 200)
+
                 alert("领取成功");
             else {
                 alert("!=200成功");
@@ -87,7 +89,6 @@ $(".getCouponDiv.available .getCouponBtn").click(function () {
     });
 
 });
-
 
 if (typeof WeixinJSBridge == "undefined") {
     // return true;

@@ -5,6 +5,7 @@ from django.db.models import Q
 from .models import Course,Cost
 from tradApp.models import Coupon
 from users.models import Banner
+from operation.models import UserCoupon
 
 # from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
@@ -54,6 +55,7 @@ class CourseDetailView(View):
         #                                             'course_has_fav':course_has_fav,
         #                                             'org_has_fav':org_has_fav})
 
+
 from tradApp.models import Coach_Orders
 from utils.about_pay import get_wxpayUrl,get_alipayUrl
 
@@ -70,7 +72,7 @@ class CourseInfoView(View):
         #     other_course_list.append(user_course.course)
         #系统生成订单 和支付的url  随机订单号
         # request.post('username','') 正常获取
-        # 现在是get  后来要改成  post 
+        # 现在是get  后来要改成  post
         #判断支付方式
         style_pay = request.GET.get('style','')
         if style_pay == '':
@@ -101,24 +103,52 @@ class CourseInfoView(View):
         return render(request,'course-video.html',{'course':course,'coach_order':coachOrder,'alipay_url':payUrl,'style':pay_type})
 
 from .models import Active
-class GetCoupon(View):
+import json
+class ActiveDetail(View):
     def get(self,request,active_id):
-        active = Active.objects.get(code=active_id)
-        coupons = Coupon.objects.filter(active=active)
-        banners = Banner.objects.all()
-        return render(request,'getCoupon.html',{'coupons':coupons,'active':active,'banners':banners})
-    def post(self,request,active_id):
+        if not request.user.is_authenticated:
+            #每登录正常显示
+            active = Active.objects.get(code=active_id)
+            coupons = Coupon.objects.filter(active=active)
+            banners = Banner.objects.all()
+            return render(request,'getCoupon.html',{'coupons':coupons,'active':active,'banners':banners})
+        else:
+            #判断 是否领取了  （coupon  是否在 UserCoupon）
+            user = request.user
+            print('--username-->',user.username)
+            usercoupons = UserCoupon.objects.filter(user=user)
+            l = []
+            for usercoupon in usercoupons:
+                l.append(usercoupon.coupon)
+            active = Active.objects.get(code=active_id)
+            coupons = Coupon.objects.filter(active=active)
+            banners = Banner.objects.all()
+            return render(request,'getCoupon.html',{'coupons':coupons,'active':active,'banners':banners,'usercoupons':l})
+                      
+class GetCoupon(View):
+    def get(self,request):
+        pass
+    def post(self,request):
         #判断登录状态
         if request.user.is_authenticated():
             coupon_id = request.POST.get('coupon_id','')
+            active_id = request.POST.get('active_id','')
+            print('-cp-->',coupon_id)
+            print('--ac--->', active_id)
+                           
             coupon = Coupon.objects.get(id=coupon_id)
-            coupon.status = ''
+            coupon.status = 'used'
+            coupon.save()
+            active = Active.objects.get(code=active_id)
+            coupons = Coupon.objects.filter(active=active)
+            banners = Banner.objects.all()                   d
+            resp = {'status': 200,'msg':'领取成功'}
+            return HttpResponse(json.dumps(resp), content_type='application/json')
 
-        active = Active.objects.get(code=active_id)
-        coupons = Coupon.objects.filter(active=active)
-        banners = Banner.objects.all()
-        return render(request,'getCoupon.html',{'coupons':coupons,'active':active,'banners':banners})
-
+        else:
+            print('----->未登录')
+            resp = {'status': '未登录'}
+            return HttpResponse(json.dumps(resp), content_type='application/json')
 
 class AddCommentView(View):
     def post(self,request):

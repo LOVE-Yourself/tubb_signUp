@@ -65,7 +65,7 @@ class Coupon(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return str(self.coupon_sn)
+        return str(self.code)
 
 class Coach_Orders(models.Model):
     Order_Status = (

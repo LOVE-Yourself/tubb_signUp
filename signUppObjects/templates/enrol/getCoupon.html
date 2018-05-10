@@ -32,7 +32,7 @@
         <div class="couponDiv">
             {% for coupon in coupons %}
             <div class="col-xs-12  col-sm-6 col-md-4 col-lg-3">
-                <div class="getCouponDiv {% if coupon.status == 'onused'  %}available {% else %} expire{% endif %}">
+                <div class="getCouponDiv {% if coupon in usercoupons  %} expire {% else %} available{% endif %}">
                     <input class="couponId" value="123456789" style="display: none">
                     <div class="leftDiv">
                         <span class="moneyType">￥</span>
@@ -42,7 +42,11 @@
                     <div class="rightDiv">
                         <div class="top">
                             <span class="limit">【{{ coupon.belong_course }}】</span>
-                            <div class="getCouponBtn"><span>领取></span><input class="couponId" value="{{ coupon.code }}" style="display: none"></div>
+                            <div class="getCouponBtn"><span>领取></span>
+                                <input class="couponId" value="{{ coupon.code }}" style="display: none">
+                                <input class="activeId" value="{{ active.code }}" style="display: none">
+                            </div>
+
                         </div>
                         <div class="expireDate"><span>{{ coupon.end_detail }}</span></div>
                     </div>
