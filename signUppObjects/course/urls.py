@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import Courselistview,CourseDetailView,CourseInfoView,ActiveDetail,GetCoupon,AddCommentView
+from .views import Courselistview,CourseDetailView,CourseInfoView,ActiveDetail,GetCoupon
 
 urlpatterns = [
 
@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'course_info/(?P<course_id>\d+)$', CourseInfoView.as_view(), name='course_info'),
     url(r'active_detail/(?P<active_id>\d+)$',ActiveDetail.as_view(),name='active_detail'),
     url(r'get_coupon/$',GetCoupon.as_view(),name='get_coupon'),
-    url(r'add_comment/$',AddCommentView.as_view(),name='add_comment'),
+
 
 ]

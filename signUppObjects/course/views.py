@@ -11,49 +11,27 @@ from operation.models import UserCoupon
 # Create your views here.
 class Courselistview(View):
     def get(self,request):
+        try:
+            course1 = Course.objects.get(id=1)
+            course2 = Course.objects.get(id=2)
 
-        course1 = Course.objects.get(id=1)
-        course2 = Course.objects.get(id=2)
-        banners = Banner.objects.all()
-
+        except:
+            print('【+课程列表页】：没有取到课程列表')
+        try:
+            banners = Banner.objects.all()
+        except:
+            print('【+课程列表页】：没有取到轮播图')
         return render(request,'enrol.html',{'course1':course1,'course2':course2,'banners':banners})
 
 class CourseDetailView(View):
     def get(self,request,course_id):
-        print('------suanl ba ---->',course_id)
+
         try:
             course = Course.objects.get(id=course_id)
         except:
             print('【+】：没有取到相应课程')
-        try:
-            lesson_count = course.lesson_set.all()#章节数
-        except:
-            print('[+]:相应课程下的章节出错')
-        #相关推荐
-        try:
-            tag = course.tag
-            if tag:
-                course_relate = Course.objects.filter(tag=tag)
-            else:
-                course_relate = []
-        except:
-            print('[+]:相关推荐出错')
-        #判断用户状态
-        org_has_fav = False
-        course_has_fav= False
-
-        # if request.user.is_authenticated():
-        #     if UserFavorrate.objects.filter(user=request.user,fav_id=course.id,fac_type=1):
-        #         course_has_fav = True
-        #     if UserFavorrate.objects.filter(user=request.user,fav_id=course.org.id,fac_type=2):
-        #         org_has_fav = True
-
+ 
         return render(request,'curriculumDetail.html',{'course':course})
-        # return render(request,'course-detail.html',{'course':course,
-        #                                             'lesson_count':lesson_count,
-        #                                             'course_relate':course_relate,
-        #                                             'course_has_fav':course_has_fav,
-        #                                             'org_has_fav':org_has_fav})
 
 
 from tradApp.models import Coach_Orders
@@ -135,40 +113,37 @@ class GetCoupon(View):
             active_id = request.POST.get('active_id','')
             print('-cp-->',coupon_id)
             print('--ac--->', active_id)
-                           
             coupon = Coupon.objects.get(id=coupon_id)
             coupon.status = 'used'
             coupon.save()
-            active = Active.objects.get(code=active_id)
-            coupons = Coupon.objects.filter(active=active)
-            banners = Banner.objects.all()                   d
-            resp = {'status': 200,'msg':'领取成功'}
+            resp = {'status': 200,'msg':'领取成功'}   #前段拿到200 window reload
             return HttpResponse(json.dumps(resp), content_type='application/json')
-
         else:
             print('----->未登录')
-            resp = {'status': '未登录'}
+            resp = {'status':202,'msg':'未登录'}
             return HttpResponse(json.dumps(resp), content_type='application/json')
 
-class AddCommentView(View):
-    def post(self,request):
-        print('---->添加评论')
-        if not request.user.is_authenticated:
 
-            return HttpResponse("{'status':'fail','msg':'用户未登录'}",content_type='application/json')
 
-        course_id = request.POST.get('course_id',0)
-        comments = request.POST.get('comments','')
-        print('真的是你吗----》',comments)
-        if int(course_id) >0 and comments:
-            course = Course.objects.get(id=int(course_id))
-            course_comment = CourseComments()
-            course_comment.course = course
-            course_comment.comments = comments
-            course_comment.user = request.user
-            course_comment.save()
-            return HttpResponse("{'status':'success','msg':'添加成功'}",content_type='application/json')
-        else:
-            return HttpResponse("{'status':'fail','msg':'添加失败'}",content_type='application/json')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

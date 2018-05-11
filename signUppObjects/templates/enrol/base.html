@@ -19,7 +19,10 @@
 
 </head>
 
-<body>
+
+{% block body %}
+        <body>
+{% endblock %}
 <div class="index-body"></div>
 <div class="nav" style="margin-bottom: 604px">
     <div class="nav-s container">
@@ -64,8 +67,16 @@
                 </li>
                 <li class="nav-li1"><i class="fa fa-car"></i></li>
             </ul>
+
             <div class="login"><a href="{% url 'user:login' %}">登录</a></div>
             <div class="register"><a href="{% url 'user:register' %}">注册</a></div>
+            <div class="user">
+               <div class="userIcon">
+                   <img src=".././static/images/difficult3x.png">
+               </div>
+                <span class="userName">用户5874</span>
+
+            </div>
         </div>
     </div>
     <div class=" switchMenuBtn"><span class="one"></span><span class="two"></span><span class="three"></span></div>
