@@ -2,7 +2,7 @@ from django.shortcuts import render,HttpResponse
 from django.views.generic import View
 from operation.models import UserCourse
 from django.db.models import Q
-from .models import Course,Cost
+from .models import Course,Cost,Practiceplace
 from tradApp.models import Coupon
 from users.models import Banner
 from operation.models import UserCoupon
@@ -14,7 +14,6 @@ class Courselistview(View):
         try:
             course1 = Course.objects.get(id=1)
             course2 = Course.objects.get(id=2)
-
         except:
             print('【+课程列表页】：没有取到课程列表')
         try:
@@ -30,8 +29,14 @@ class CourseDetailView(View):
             course = Course.objects.get(id=course_id)
         except:
             print('【+】：没有取到相应课程')
- 
-        return render(request,'curriculumDetail.html',{'course':course})
+        try:
+            p_id = course.practiceplace_id
+            prac = Practiceplace.objects.get(id = p_id)
+            print('训练场地--》',p.title)
+        except:
+            print('出错')
+
+        return render(request,'curriculumDetail.html',{'course':course,'practice':prac})
 
 
 from tradApp.models import Coach_Orders
@@ -76,6 +81,7 @@ class CourseInfoView(View):
         if pay_type == 'wechat':
             #微信支付
             payUrl = get_wxpayUrl(coachOrder.order_sn,coachOrder.pay_mount)
+            #重定向那个url
         else:
             payUrl = get_alipayUrl(coachOrder.order_sn, coachOrder.pay_mount)
         return render(request,'course-video.html',{'course':course,'coach_order':coachOrder,'alipay_url':payUrl,'style':pay_type})
@@ -113,9 +119,12 @@ class GetCoupon(View):
             active_id = request.POST.get('active_id','')
             print('-cp-->',coupon_id)
             print('--ac--->', active_id)
-            coupon = Coupon.objects.get(id=coupon_id)
-            coupon.status = 'used'
-            coupon.save()
+            usercoupon = UserCoupon()
+            coupon = Coupon.objects.get(code=coupon_id)
+            usercoupon.user = request.user
+            usercoupon.coupon = coupon
+            usercoupon.save()
+
             resp = {'status': 200,'msg':'领取成功'}   #前段拿到200 window reload
             return HttpResponse(json.dumps(resp), content_type='application/json')
         else:

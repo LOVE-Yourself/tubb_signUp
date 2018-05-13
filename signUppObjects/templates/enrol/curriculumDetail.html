@@ -48,10 +48,15 @@
 
             <div class="leftDiv col-md-8 col-xs-12 col-sm-12">
             <div>
+                {% for cost in course.get_costs %}
+                {% if cost.name != '合计'%}
                     <div>
-                        <span>培训费用</span>
-                        <span>￥3800</span>
+                        <span>培训费用{% cost.name %}</span>
+                        <span>￥3800{% cost.money %}</span>
                     </div>
+                {% endif %}
+                {% endfor %}
+
                     <div>
                         <span>理论培训费及资料费</span>
                         <span>￥385</span>
@@ -68,6 +73,16 @@
                         <span>保险费</span>
                         <span>￥50</span>
                     </div>
+
+                {% for cost in course.get_costs %}
+                {% if cost.name == '合计' %}
+                    <div>
+                        <span>培训费用{% cost.name %}</span>
+                        <span>￥3800{% cost.money %}</span>
+                    </div>
+                {% endif %}
+                {% endfor %}
+
                     <div>
                         <span>合计</span>
                         <span>￥4850</span>

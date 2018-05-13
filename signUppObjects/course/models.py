@@ -36,6 +36,8 @@ class Course(models.Model):
         verbose_name_plural = verbose_name
     def get_advantages(self):
         return self.advantage_set.all()
+    def get_costs(self):
+        return self.cost_set.all()
 
     def __str__(self):
         return self.name
@@ -62,6 +64,7 @@ class Cost(models.Model):
         verbose_name_plural = verbose_name
     def __str__(self):
         return self.name
+
 #活动
 class Active(models.Model):
     title = models.CharField(default='新春活动',max_length=20,verbose_name='活动名称')
