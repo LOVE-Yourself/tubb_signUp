@@ -232,7 +232,14 @@ a:focus, a:hover {
 .nav .nav-s .nav-nav .nav-ul .nav-li:nth-child(6):hover ~ .nav-li1 {
     margin-left: 520px
 }
-
+.index-body {
+    background: url(../images/indexbg.jpg) center top no-repeat;
+    width: 100%;
+    height: 700px;
+    position: fixed;
+    top: 0;
+    z-index: -999;
+}
 .banner {
     width: 100%;
     /*height: 250px;*/
@@ -293,13 +300,14 @@ a:focus, a:hover {
     float: left;
     margin-top: 58px;
     overflow: hidden;
-    border: 2px solid rgb(12, 152, 125);
-    background: rgb(12, 152, 125)
+    /*border: 2px solid rgb(12, 152, 125);*/
+    /*background: rgb(12, 152, 125)*/
 }
 
 .main-1 .main-con .pic img {
     /*width: 368px;*/
     height: 358px;
+    border: 2px solid rgb(12, 152, 125);
     -webkit-transition: all .4s ease;
     transition: all .4s ease;
 }
@@ -456,6 +464,7 @@ a:focus, a:hover {
     height: 310px;
     background: #191919;
     text-align: center;
+    overflow: hidden;
 }
 
 /*.footer .f-title{ font-size: 42px; color: #FFF; line-height: 80px; letter-spacing: 3px}*/
@@ -1097,6 +1106,8 @@ a:focus, a:hover {
     /*width: 200px;*/
     height: 200px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .thumbnail > img {
@@ -1127,8 +1138,8 @@ a:focus, a:hover {
 }
 
 .login-table > div, .register-table > div {
+    width: 70%;
     margin: 0 auto;
-    width: 62%;
 }
 
 .login-table > div div, .register-table > div div {
@@ -1215,6 +1226,7 @@ button.submit {
     font-size: 1.8rem;
     background-color: #00CA78;
     border: none;
+
 }
 
 /*-----------------------------------------------------------注册页面-------------------------------------------------*/
@@ -1251,11 +1263,12 @@ button.submit {
     .switchMenuBtn {
         display: block;
     }
-
-    .login-table, .register-table > div {
-        width: 80%;
+    .loginBg .container {
+       width: 100%;
     }
-
+    .login-table, .register-table > div {
+        width: 100%;
+    }
     .nav-nav {
         position: absolute;
         right: 0px;
@@ -1344,22 +1357,38 @@ button.submit {
 
 .worrysDiv .worrys .difficult .circlePic {
     background: url("../images/difficult3x.png") center no-repeat;
+    background-size: 100%;
 
 }
 
 .worrysDiv .worrys .wasteTime .circlePic {
     background: url("../images/wasteTime3x.png") center no-repeat;
+    background-size: 100%;
 
 }
 
 .worrysDiv .worrys .noPatience .circlePic {
     background: url("../images/noPatience3x.png") center no-repeat;
+    background-size: 100%;
 
 }
 
 .worrysDiv .worrys .noExperience .circlePic {
     background: url("../images/noExperience3x.png") center no-repeat;
+    background-size: 100%;
 
+}
+
+@media (max-width: 768px) {
+    .worrysDiv .worrys > div .circlePic {
+        width:84px;
+        height: 84px;
+    }
+
+    .worrysDiv .worrys > div {
+        margin-top: 12px;
+
+    }
 }
 
 .entry {
@@ -1386,7 +1415,7 @@ button.submit {
 
 }
 
-.c1 .pic  img, .c2 .pic  img{
+.c1 .pic img, .c2 .pic img {
     width: 100%;
     height: auto;
 
@@ -1619,38 +1648,34 @@ span.activity {
 }
 
 @media (max-width: 768px) {
-    .c1 .pic {
-        background: url("../images/c1pic.png") no-repeat center;
 
-    }
-
-    .c2 .pic {
-        background: url("../images/c2pic.png") no-repeat center;
-
-    }
-
-    .curriculum .pic {
-        height: 112px;
-    }
+    /*!*.c1 .pic {*!*/
+    /*!*background: url("../images/c1pic.png") no-repeat center;*!*/
+    /*!*}*!*/
+    /*!*.c2 .pic {*!*/
+    /*!*background: url("../images/c2pic.png") no-repeat center;*!*/
+    /*!*}*!*/
+    /*!*.curriculum .pic {*!*/
+    /*!*height: 112px;*!*/
+    /*!*}*!*/
 
 }
 
-.curriculumDetial {
+.curriculumDetail {
     width: 100%;
     overflow: hidden;
 }
 
-.curriculumDetial .pic {
+.curriculumDetail .pic {
     /*height: 200px;*/
 
 }
 
-.curriculumDetial .pic img{
+.curriculumDetail .pic img {
     width: 100%;
 }
 
-
-.curriculumDetial
+.curriculumDetail
 .topDiv {
     display: flex;
     align-items: center;
@@ -1666,39 +1691,47 @@ span.activity {
     justify-content: space-around;
 }
 
-.curriculumDetial .tbbServer {
+@media (max-width: 768px) {
+    .rightInformation {
+        padding: 0;
+
+    }
+
+}
+
+.curriculumDetail .tbbServer {
     width: 20%;
     float: left;
     margin: 8px 50px 12px 0px;
     color: #999999;
 }
 
-.curriculumDetial .tbbServer span {
+.curriculumDetail .tbbServer span {
 
     color: #999999;
 }
 
-.curriculumDetial .tbbServer li {
+.curriculumDetail .tbbServer li {
 
     color: #00CA78;
 }
 
-.curriculumDetial .btmDiv {
+.curriculumDetail .btmDiv {
     clear: left;
 }
 
-.curriculumDetial .topDiv span {
+.curriculumDetail .topDiv span {
     color: #00CA78;
     font-size: 1.8rem;
 }
 
-.curriculumDetial .topDiv .oldPrize {
+.curriculumDetail .topDiv .oldPrize {
     color: #999999;
     font-size: 1.8rem;
     text-decoration-line: line-through;
 }
 
-.curriculumDetial {
+.curriculumDetail {
     width: 100%;
     background: white;
     padding: 12px;
@@ -1706,7 +1739,7 @@ span.activity {
 
 }
 
-.curriculumDetial .entryBtn {
+.curriculumDetail .entryBtn {
     background: #0fcb77;
     width: 118px;
     height: 32px;
@@ -1715,7 +1748,7 @@ span.activity {
     justify-content: center;
 }
 
-.curriculumDetial .entryBtn span {
+.curriculumDetail .entryBtn span {
     color: white;
     font-size: 1.4rem;
 }
@@ -1733,7 +1766,7 @@ span.activity {
 }
 
 .promiseDiv > div:first-of-type > div {
-    margin-right: 24px;
+    /*margin-right: 24px;*/
 }
 
 .promiseDiv > div:last-of-type {
@@ -1755,12 +1788,12 @@ span.activity {
     }
 
     .promiseDiv .pic {
-        width: 322px;
+        width: 100%;
         height: 148px;
         background: url("../images/practicePlace.png");
     }
 
-    .curriculumDetial .entryBtn {
+    .curriculumDetail .entryBtn {
         width: 100%;
     }
 
@@ -1774,25 +1807,32 @@ span.activity {
     box-shadow: 2px 2px 2px 1px #e7e7e7;
 }
 
-.chargeDetail .leftDiv > div {
+.chargeDetail .leftDiv > div:first-of-type {
     display: flex;
-    height: 30px;
     align-items: center;
     justify-content: space-around;
     /* padding: 12px; */
-    height: 50px;
+    height: 100px;
     box-shadow: 0 1px 2px 0px #CCCCCC;
 }
-
+.chargeDetail .leftDiv > div>div{
+     width: 16%;
+ }
+.chargeDetail .leftDiv > div>div:nth-of-type(2){
+    width: 20%;
+}
 .chargeDetail .leftDiv > div span {
     display: flex;
-    width: 16.666%;
+    width: 100%;
+    height: 50px;
     text-align: center;
     align-items: center;
     justify-content: center;
+    border-bottom: 1px solid #e8e8e8;
 }
 
 .explain {
+    height: 66px;
     background: rgba(242, 247, 255, 1);
     padding: 12px;
 }
@@ -2042,6 +2082,12 @@ span.activity {
         background-size: 100%;
 
     }
+
+    .remarks {
+        display: flex;
+        flex-flow: column;
+        margin-top: 18px !important;
+    }
 }
 
 .paySuccessDiv {
@@ -2087,13 +2133,15 @@ span.activity {
     font-size: 1.4rem;
     color: #58BF30;
 }
-.orderInfo .createTime  span:last-of-type{
+
+.orderInfo .createTime span:last-of-type {
     font-size: 1.4rem;
     color: black;
 }
-.remarks {
+
+.paySuccessDiv .remarks {
     display: flex;
-    margin-top: 50px!important;
+    margin-top: 50px;
 }
 
 .lookOrderBtn {
@@ -2109,7 +2157,8 @@ span.activity {
 }
 
 .payBtnDiv {
-    background: whitesmoke !important;;
+    background: whitesmoke !important;
+    overflow: hidden;
 }
 
 .payBtn span {
@@ -2123,76 +2172,139 @@ span.activity {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding-right: 4px;
+        padding-left: 4px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 
     .orderProgress {
         position: absolute;
         top: 43px;
-        width: 68%;
-        left: 17%;
+        width: 77%;
+        left: 9%;
     }
-
+    .orderForm .left, .orderForm .right {
+        padding: 0px 10px;
+    }
     .orderForm .left {
         order: 2;
     }
 
     .orderForm .right {
         order: 1;
-        padding: 10px;
+        padding: 4px;
+    }
+
+    .operationMenu {
+        position: fixed;
+        z-index: 999;
+        top: 53px;
+        bottom: 0px;
+        height: auto;
+        left: 0;
+        width: 49%;
+        -webkit-transition: all .4s ease;
+        transition: all .4s ease;
+    }
+
+    .operationMenu.hidden {
+        display: block !important;
+        left: -50%;
+    }
+
+    .menuToRightBtn {
+        display: block !important;
+        position: absolute;
+        top: 0;
+        right: -30px;
+        width: 30px;
+        height: 30px;
+        background: #45998f;
+        /* right: 0; */
+        left: auto;
+        outline: none;
+        border: none;
+    }
+
+    .menuToRightBtn i {
+        color: white;
+    }
+
+    .orderInfo {
+        flex-flow: column;
+    }
+
+    .orderInfo > div {
+        margin-top: 12px;
     }
 
 }
+
 .individualCenter.container {
     margin-top: 18px;
     margin-bottom: 18px;
 }
-.operationMenu{
-    height: 555px;
+
+.operationMenu {
+    min-height: 555px;
     background: white;
 }
+
 .panel-default > .panel-heading {
     position: relative;
     color: #333;
     background-color: #ffffff;
 }
+
 .panel {
     margin-bottom: 20px;
     background-color: #fff;
-     border: none;
+    border: none;
     /* -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
     /* box-shadow: 0 1px 1px rgba(0, 0, 0, .05); */
 }
+
 .panel-heading li.fa {
     position: absolute;
     right: 40px;
 }
-.panel-body  i.fa.fa-cog{
+
+.panel-body i.fa.fa-cog {
     font-size: 1.8rem;
 }
- .panel-title > a{
+
+.panel-title > a {
     color: inherit;
     display: flex;
     align-items: center;
 }
+
 .panel-body {
-   padding-left: 32px;
+    padding-left: 32px;
 }
-.icon img{ width: 100%; height: auto;max-width: 100%; display: block; }
 
+.icon img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
 
-.icon{
+.icon {
     display: inline-block;
     margin: 0 4px;
     width: 20px;
     float: left;
 }
 
-
-.personalRight{
+.personalRight {
     height: 555px;
 
 }
 
-.displayContent{
+.displayContent {
     margin-left: 5%;
     width: 95%;
     background: white;
@@ -2200,15 +2312,34 @@ span.activity {
     padding: 18px;
 
 }
-.displayContent h4{
+
+@media (max-width: 768px) {
+
+    .displayContent {
+        width: 95%;
+        margin: 0 auto;
+        background: white;
+        height: 100%;
+        padding:12px 0px;
+    }
+
+    .personalRight .userInf {
+        margin-left: 8px;
+    }
+
+}
+
+.displayContent h4 {
     margin-left: 16px;
 }
-.entryOrder{
+
+.entryOrder {
     width: 100%;
     border: #EEEEEE solid 1px;
 
 }
-.entryOrder .formHead ,.myCoupon .formHead {
+
+.entryOrder .formHead, .myCoupon .formHead {
     width: 100%;
     height: 56px;
     display: flex;
@@ -2217,7 +2348,13 @@ span.activity {
     align-items: center;
     background: #EEEEEE;
 }
-.orderNum{
+.entryOrder .formHead{
+    justify-content: start;
+}
+.entryOrder  .formHead span {
+    width: 30%;
+}
+.orderNum {
     padding-left: 16px;
     height: 48px;
     display: flex;
@@ -2225,20 +2362,23 @@ span.activity {
     border-bottom: 1px #eeeeee solid;
 }
 
-.orderNum span:first-of-type{
-     color: #999999;
+.orderNum span:first-of-type {
+    color: #999999;
     margin-top: 18px;
 }
-.orderNum span:last-of-type{
+
+.orderNum span:last-of-type {
     color: #666666;
     font-size: 1.6rem;
 
 }
-.entryOrder .formHead span, .myCoupon .formHead span{
+
+.entryOrder .formHead span, .myCoupon .formHead span {
     color: #666666;
 
 }
-.entryOrder .formBody,.myCoupon  .formBody{
+
+.entryOrder .formBody, .myCoupon .formBody {
     width: 100%;
     height: 38px;
     display: flex;
@@ -2258,15 +2398,19 @@ span.activity {
 .entryOrder .formBody span.prize {
     color: #00CA78;
     font-size: 1.6rem;
-}.entryOrder .formBody span.time {
+}
+
+.entryOrder .formBody span.time {
     color: #666666;
     font-size: 1rem;
 }
-.getCouponDiv .rightDiv .superposed{
+
+.getCouponDiv .rightDiv .superposed {
     background: white;
     border-radius: 4px;
     width: 50px;
 }
+
 .getCouponDiv .rightDiv .superposed span {
     color: #FF0057;
     font-size: 1.6rem;
@@ -2277,14 +2421,15 @@ span.activity {
 
 }
 
- .getCouponDiv .rightDiv .superposed span {
+.getCouponDiv .rightDiv .superposed span {
     color: #FF0057;
     font-size: 1rem;
 }
 
- .getCouponDiv.expire .rightDiv .superposed span {
+.getCouponDiv.expire .rightDiv .superposed span {
     color: #CCCCCC;
 }
+
 .superposed span {
     display: block;
     width: 100%;
@@ -2293,7 +2438,7 @@ span.activity {
 
 }
 
-.myCoupon  .getCouponDiv .rightDiv .top {
+.myCoupon .getCouponDiv .rightDiv .top {
     border-left: solid white 1px;
     display: flex;
     flex-flow: column;
@@ -2302,19 +2447,23 @@ span.activity {
     align-items: center;
     margin-top: 14px;
 }
+
 .myCoupon .getCouponDiv .rightDiv .getCouponBtn span {
     color: #FF0057;
     font-size: 1.4rem;
 }
+
 .myCoupon .getCouponDiv.expire .rightDiv .getCouponBtn span {
     color: #CCCCCC;
     font-size: 1.4rem;
 }
-.myCoupon  .getCouponDiv .leftDiv .price {
+
+.myCoupon .getCouponDiv .leftDiv .price {
     font-size: 4.8rem;
 
 }
- .formHead span {
+
+.formHead span {
     display: inline-block;
     width: 74px;
     padding: 12px;
@@ -2330,36 +2479,34 @@ span.activity {
     color: #666666;
 }
 
-
 .myCoupon .formHead span.active {
     border-bottom: 2px solid #00CA78;
     color: #00CA78;
 }
 
-
-.tabContent{
+.tabContent {
     width: 100%;
 }
 
-
-.displayContent{
+.displayContent {
     display: none;
 }
 
-.displayContent.active{
+.displayContent.active {
     display: block;
-}.tabContent{
-    display: none;
-     flex-flow: row wrap;
-     justify-content: space-around;
 }
 
-.tabContent.active{
+.tabContent {
+    display: none;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.tabContent.active {
     display: flex;
 }
 
-
-.personalRight .userInf{
+.personalRight .userInf {
     display: flex;
     flex-flow: column wrap;
     margin-left: 24px;
@@ -2371,7 +2518,8 @@ span.activity {
     border-bottom: 1px solid #CCCCCC;
     margin-bottom: 0px;
 }
-.personalRight  .userInformation .userInf>div{
+
+.personalRight .userInformation .userInf > div {
     margin-top: 12px;
 }
 
@@ -2379,38 +2527,186 @@ span.activity {
     padding: 12px;
     border-bottom: 1px solid #CCCCCC;
 }
-.personalRight .userInf .userIconDiv{
+
+.personalRight .userInf .userIconDiv {
     display: flex;
     flex-flow: column wrap;
     width: 120px;
     align-items: center;
 }
 
-.personalRight .userInf  div#userIcon {
+.personalRight .userInf div#userIcon {
     width: 120px;
     height: 120px;
-}.personalRight .userInf  div#userIcon {
+}
+
+.personalRight .userInf div#userIcon {
     width: 100%;
     height: auto;
 }
-.personalRight  .userInf span{
-    align-self: flex-end;
+
+.personalRight .userInf span {
+    align-self: center;
 }
-.personalRight .userInf .userIconDiv span{
+
+.personalRight .userInf .userIconDiv span {
     color: #666666;
     align-self: center;
     margin-top: 10px;
 
 }
-.personalRight .userInf .nicknameDiv,.personalRight .userInf .userPhoneDiv,.personalRight .userInf .realNameDiv{
+
+.personalRight .userInf .nicknameDiv, .personalRight .userInf .userPhoneDiv, .personalRight .userInf .realNameDiv {
     display: flex;
     flex-flow: row wrap;
 }
 
-.personalRight .userInf .nicknameDiv span:first-of-type,.personalRight .userInf .userPhoneDiv span:first-of-type,.personalRight .userInf .realNameDiv span:first-of-type{
-   display: inline-block;
-    width:80px ;
+.personalRight .userInf .nicknameDiv span:first-of-type, .personalRight .userInf .userPhoneDiv span:first-of-type, .personalRight .userInf .realNameDiv span:first-of-type {
+    display: inline-block;
+    width: 80px;
     color: #999999;
     text-align: right;
-    padding: 0 12px;
+    font-size: 1.2rem;
+    font-weight: 200;
+    padding: 0 14px;
+}
+
+.personalRight .realNameDiv input {
+    padding: 3px;
+}
+
+.personalRight .realNameDiv input.editable {
+    padding: 3px;
+    border:rgba(15, 203, 119, 0.2) solid 2px;
+
+}
+
+.personalRight .realNameDiv input.Disable {
+    pointer-events: none;
+}
+
+.userInf .realNameDiv .fa-edit, .userInf .realNameDiv .fa-upload {
+    font-size: 1.8rem;
+    font-weight: 100;
+    align-self: flex-end;
+    margin-left: 4px;
+}
+
+.realNameDiv button[type="submit"] {
+    display: none;
+    border: none;
+
+}
+
+#loginMask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 800px;
+    background: rgba(43, 43, 43, 0.5);
+
+}
+
+#loginMask .loginDiv {
+    width: 450px;
+    margin: 0 auto;
+
+}
+
+#loginMask .loginBg.thumbnail > div {
+    width: 100%;
+    min-height: 362px;
+
+}
+
+#loginMask .login-table > div, .register-table > div {
+    width: 68%;
+    margin: 0 auto;
+}
+
+#loginMask .loginBg {
+    margin-top: 100px;
+    min-height: 362px;
+    width: 100%;
+    /* background: url(../images/loginPageBg.png) no-repeat center center; */
+    background-size: 100%;
+    position: relative;
+
+}
+
+#loginMask .login-table {
+    display: flex;
+    /* align-items: center; */
+    /* width: 100%; */
+    height: 328px;
+    background: white;
+    border-radius: 8px;
+}
+
+#loginMask .login-table h2 {
+    text-align: center;
+    margin-top: 28px;
+    margin-bottom: 22px;
+}
+
+#loginMask .login-table .h2, h2 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#loginMask button.submit {
+
+    margin-top: 6px;
+
+}
+
+#loginMask .closeLoginModule {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+}
+
+#loginMask .login-table  .closeLoginModule {
+    position: absolute;
+    width: 16px;
+    top: 4px;
+    right: 10px;
+    font-size: 2rem;
+}
+#loginMask .closeLoginModule button{
+    background:white;
+
+}
+
+#loginMask .closeLoginModule button {
+    border: none;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    #loginMask .login-table {
+        width: 316px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .register-table > div {
+        width: 276px;
+        margin: 0 auto;
+        position: relative;
+    }
+    #loginMask .loginDiv {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        position: absolute;
+        top: 50%;
+        width: 24px;
+        height: 22px;
+        margin-top: -22px;
+    }
+
 }

@@ -15,6 +15,43 @@ from datetime import datetime
 
 from users.models import UserProfile
 from driverSchool.models import Coach
+
+
+class Payfor(View):
+    def post(self,request):
+        #系统生成订单 和支付的url  随机订单号
+        # request.post('username','') 正常获取
+        # 现在是get  后来要改成  post
+        #判断支付方式
+        style_pay = request.GET.get('style','')
+        if style_pay == '':
+            pay_type = 'aplipay'
+        else:
+            pay_type = style_pay
+        order_sn = request.GET.get('order_sn','')
+        if order_sn == '':
+            coachOrder = Coach_Orders()
+            coachOrder.order_sn = '20150320010101135'
+            coachOrder.course_name = 'c1过弯基础课程'
+            coachOrder.username = '徐璟灏'
+            coachOrder.order_mount = '4650'
+            coachOrder.coach_name = '汪鹏'
+            coachOrder.pay_type = pay_type
+            coachOrder.pay_mount = '1'
+            coachOrder.order_status = 'WAIT_BUYER_PAY'
+            coachOrder.save()
+        else:
+            coachOrder = Coach_Orders.objects.filter(order_sn=order_sn)[0]
+            coachOrder.pay_type = pay_type
+            coachOrder.save()
+        if pay_type == 'wechat':
+            #微信支付
+            payUrl = get_wxpayUrl(coachOrder.order_sn,coachOrder.pay_mount)
+            #重定向那个url
+        else:
+            payUrl = get_alipayUrl(coachOrder.order_sn, coachOrder.pay_mount)
+
+
 #对返回来的url进行验证加密  防止别人伪造你的请求
 class AlipayReturnView(View):
     def get(self,request):

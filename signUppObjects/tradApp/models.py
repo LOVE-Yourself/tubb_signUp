@@ -43,13 +43,19 @@ class Coupon(models.Model):
     Coupon_Status = (('used','已使用'),
                      ('onused','未使用'),
                      )
+    Coupon_isOver = (('true','可叠加'),
+                     ('false','不可叠加'),
+                     )
+    Coupon_categry = (('voucher','抵用劵'),
+                     ('active','活动券'),
+                     )
     # Pay_Type = (
     #     ('wechat','微信'),
     #     ('aplipay','支付宝'),
     # )
 
     course = models.ForeignKey(Course,verbose_name='课程')
-    active = models.ForeignKey(Active,verbose_name='活动')
+    active = models.ForeignKey(Active,blank=True,null=True,verbose_name='活动')
     belong_course = models.CharField(max_length=20,default='限C1报名',verbose_name='所属课程')
     code = models.CharField(blank=True,null=True,max_length=20,default='1805071231',verbose_name=u'优惠券码')
     coupon_sn = models.CharField(blank=True,null=True,max_length=20,verbose_name=u'优惠劵号')
@@ -57,6 +63,8 @@ class Coupon(models.Model):
     status = models.CharField(choices=Coupon_Status,max_length=10,verbose_name='使用状态')
     coupon_mount = models.CharField(max_length=10,default='200', verbose_name='面额')
     end_detail = models.TextField(default='自领取之日起30天有效',verbose_name='截止时间')
+    isover = models.CharField(max_length=20,choices=Coupon_isOver, null=True, blank=True, verbose_name='是否叠加')
+    categry = models.CharField(max_length=20,choices=Coupon_categry,null=True,blank=True,verbose_name='优惠券类别')
     use_time = models.DateTimeField(default=datetime.now,null=True, blank=True, verbose_name='支付时间')
     add_time = models.DateTimeField(default=datetime.now, verbose_name='添加时间')
     # belong_activ = models.CharField(default='新春活动',max_length=20,verbose_name='所属活动')

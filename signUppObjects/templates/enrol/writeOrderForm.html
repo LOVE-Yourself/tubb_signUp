@@ -1,0 +1,139 @@
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block body %}<body style="background: #F5F5F5">{% endblock %}
+
+{% block content %}
+
+<div class="blankHeight"></div>
+<div class="orderWriteProgress ">
+    <div class="orderProgress ">
+        <div class="bg">
+            <div class="first">
+                <div class="pointBg ">
+                    <span>1</span>
+                </div>
+                <div class="stepText">填写订单</div>
+            </div>
+            <div class="second  active">
+                <div class="pointBg ">
+                    <span>2</span>
+                </div>
+
+                <div class="stepText">订单支付</div>
+            </div>
+            <div class="third">
+                <div class="pointBg ">
+                    <span>3</span>
+                </div>
+                <div class="stepText">报名成功</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="orderForm container">
+    <div class="left col-md-8  col-md-8 col-xs-12 ">
+        <div>
+            <div class="basicInf"><span>报名课程：</span><span>C1标准班</span><span class="cPrice">￥4850</span></div>
+            <div><span>真实姓名：</span><input placeholder="输入姓名" id="userName"><span class="error"> </span></div>
+        </div>
+        <div>
+            <div><span>支付方式：</span></div>
+            <div>
+                <div class="payDiv"><input class="form-check-input" type="radio" name="payMethod" id="aliPay"
+                                           value="aliPay" checked>
+                    <label class="form-check-label" for="aliPay">
+                        <img src=".././static/images/alipay2x.png">支付宝
+                    </label></div>
+                <div class="payDiv"><input class="form-check-input" type="radio" name="payMethod" id="weixinPay"
+                                           value="weixinPay"
+                                           checked>
+                    <label class="form-check-label" for="weixinPay">
+                        <img src=".././static/images/weixin2x.png"> 微信
+                    </label></div>
+            </div>
+        </div>
+        <div>
+            <div><span>使用优惠：</span></div>
+            <div><span>优惠券</span></div>
+            <div class="chosenCoupon">
+                <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  active">
+
+                    <div class="leftDiv">
+                        <span class="moneyType">￥</span>
+                        <div class="price">20</div>
+                        <span class="activity">新春活动</span>
+                    </div>
+                    <div class="rightDiv">
+                        <div class="top">
+                            <div class="getCouponBtn"><span>可叠加</span><input class="couponId" value="9876"
+                                                                             style="display: none"></div>
+                            <span class="limit">【活动券】</span>
+                            <span class="limit">【限C1报名】</span>
+
+                        </div>
+                        <div class="expireDate"><span>自领取之日起30天有效</span></div>
+                    </div>
+                    <div class="whiteCircle"></div>
+                    <div class="invalid"><span>已领取</span>
+                    </div>
+                </div>
+                <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  expire">
+
+                    <div class="leftDiv">
+                        <span class="moneyType">￥</span>
+                        <div class="price">20</div>
+                        <span class="activity">新春活动</span>
+                    </div>
+                    <div class="rightDiv">
+                        <div class="top">
+                            <div class="getCouponBtn"><span>可叠加</span><input class="couponId" value="9876"
+                                                                             style="display: none"></div>
+                            <span class="limit">【活动券】</span>
+                            <span class="limit">【限C1报名】</span>
+
+                        </div>
+                        <div class="expireDate"><span>自领取之日起30天有效</span></div>
+                    </div>
+                    <div class="whiteCircle"></div>
+                    <div class="invalid"><span>不可用</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="primeCost">
+            <div class="col-md-10 col-sm-10 col-xs-10"><span>报名费金额：</span></div>
+            <div class="col-md-2 col-sm-2 col-xs-2"><span>￥4850</span></div>
+        </div>
+        <div class="useCoupon">
+            <div class="col-md-10 col-sm-10 col-xs-10"><span>优惠券：</span></div>
+            <div class="col-md-2 col-sm-2 col-xs-2"><span>-￥250</span></div>
+        </div>
+        <div class="finalCost">
+            <div class="col-md-10 col-sm-10 col-xs-10"><span>应付总额：</span></div>
+            <div class="col-md-2 col-sm-2 col-xs-2"><span>￥4600</span></div>
+        </div>
+        <div class="payBtnDiv">
+            <div class="payBtn">
+                <span>立即支付</span>
+            </div>
+        </div>
+    </div>
+    <div class="right col-md-4  col-md-4 col-xs-12 ">
+        <div>
+            <h3>                Tuobaba承诺：
+            </h3>
+            <p>
+                宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神</p>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+

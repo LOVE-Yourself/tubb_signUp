@@ -51,7 +51,7 @@ class Advantage(models.Model):
         verbose_name = u'课程优势'
         verbose_name_plural = verbose_name
     def __str__(self):
-        return self.name
+        return self.detail
 
 #费用
 class Cost(models.Model):
