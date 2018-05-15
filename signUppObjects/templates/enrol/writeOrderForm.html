@@ -39,7 +39,7 @@
 <div class="orderForm container">
     <div class="left col-md-8  col-md-8 col-xs-12 ">
         <div>
-            <div class="basicInf"><span>报名课程：</span><span>C1标准班</span><span class="cPrice">￥4850</span></div>
+            <div class="basicInf"><span>报名课程：</span><span>{{ course.name }}</span><span class="cPrice">￥{{ course.cost_new }}</span></div>
             <div><span>真实姓名：</span><input placeholder="输入姓名" id="userName"><span class="error"> </span></div>
         </div>
         <div>
@@ -48,13 +48,13 @@
                 <div class="payDiv"><input class="form-check-input" type="radio" name="payMethod" id="aliPay"
                                            value="aliPay" checked>
                     <label class="form-check-label" for="aliPay">
-                        <img src=".././static/images/alipay2x.png">支付宝
+                        <img src="{% static '/images/alipay2x.png' %}">支付宝
                     </label></div>
                 <div class="payDiv"><input class="form-check-input" type="radio" name="payMethod" id="weixinPay"
                                            value="weixinPay"
                                            checked>
                     <label class="form-check-label" for="weixinPay">
-                        <img src=".././static/images/weixin2x.png"> 微信
+                        <img src="{% static '/images/weixin2x.png' %}"> 微信
                     </label></div>
             </div>
         </div>
@@ -62,61 +62,44 @@
             <div><span>使用优惠：</span></div>
             <div><span>优惠券</span></div>
             <div class="chosenCoupon">
+                {% for coupon in coupons %}
                 <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  active">
 
                     <div class="leftDiv">
                         <span class="moneyType">￥</span>
-                        <div class="price">20</div>
-                        <span class="activity">新春活动</span>
+                        <div class="price">{{ coupon.coupon_mount }}</div>
+                        <span class="activity">{{ coupon.active.title }}</span>
                     </div>
                     <div class="rightDiv">
                         <div class="top">
-                            <div class="getCouponBtn"><span>可叠加</span><input class="couponId" value="9876"
+                            <div class="getCouponBtn"><span>{% if coupon.isover == 'true' %}可叠加{% else %}不可叠加{% endif %}</span><input class="couponId" value="9876"
                                                                              style="display: none"></div>
-                            <span class="limit">【活动券】</span>
-                            <span class="limit">【限C1报名】</span>
+                            <span class="limit">{% if coupon.categry == 'voucher' %}【抵用劵】{% else %} 【活动劵】{% endif %}</span>
+                            <span class="limit">【{{ coupon.belong_course }}】</span>
 
                         </div>
-                        <div class="expireDate"><span>自领取之日起30天有效</span></div>
+                        <div class="expireDate"><span>{{ coupon.endetail }}</span></div>
                     </div>
                     <div class="whiteCircle"></div>
                     <div class="invalid"><span>已领取</span>
                     </div>
                 </div>
-                <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  expire">
+                {% endfor %}
 
-                    <div class="leftDiv">
-                        <span class="moneyType">￥</span>
-                        <div class="price">20</div>
-                        <span class="activity">新春活动</span>
-                    </div>
-                    <div class="rightDiv">
-                        <div class="top">
-                            <div class="getCouponBtn"><span>可叠加</span><input class="couponId" value="9876"
-                                                                             style="display: none"></div>
-                            <span class="limit">【活动券】</span>
-                            <span class="limit">【限C1报名】</span>
 
-                        </div>
-                        <div class="expireDate"><span>自领取之日起30天有效</span></div>
-                    </div>
-                    <div class="whiteCircle"></div>
-                    <div class="invalid"><span>不可用</span>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="primeCost">
             <div class="col-md-10 col-sm-10 col-xs-10"><span>报名费金额：</span></div>
-            <div class="col-md-2 col-sm-2 col-xs-2"><span>￥4850</span></div>
+            <div class="col-md-2 col-sm-2 col-xs-2"><span>￥{{ course.cost_new }}</span></div>
         </div>
         <div class="useCoupon">
             <div class="col-md-10 col-sm-10 col-xs-10"><span>优惠券：</span></div>
-            <div class="col-md-2 col-sm-2 col-xs-2"><span>-￥250</span></div>
+            <div class="col-md-2 col-sm-2 col-xs-2"><span>-￥{{ course.discount }}</span></div>
         </div>
         <div class="finalCost">
             <div class="col-md-10 col-sm-10 col-xs-10"><span>应付总额：</span></div>
-            <div class="col-md-2 col-sm-2 col-xs-2"><span>￥4600</span></div>
+            <div class="col-md-2 col-sm-2 col-xs-2"><span>￥{{ course.pay_mount }}</span></div>
         </div>
         <div class="payBtnDiv">
             <div class="payBtn">
@@ -129,7 +112,7 @@
             <h3>                Tuobaba承诺：
             </h3>
             <p>
-                宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神宣讲会时间回复聚精会神</p>
+                {{ course.practiceplace.detail }}</p>
         </div>
 
     </div>

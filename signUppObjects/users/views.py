@@ -161,7 +161,9 @@ class RegistView(View):
                     except:
                         print('【+】：将数据保存后台出错')
                         return render(request, 'register.html', {'register_form':register_form,'msg': '网络延迟'})
-                    return HttpResponseRedirect('/users/login/')
+
+                    return HttpResponseRedirect('/users/login/') #http://www.baidu.com/‘
+
                 elif verify.status == 'fail':
                     return render(request,'register.html',{'register_form':register_form,'msg':'验证码过期'})
                 else:

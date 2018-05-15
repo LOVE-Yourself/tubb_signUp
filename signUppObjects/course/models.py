@@ -29,6 +29,8 @@ class Course(models.Model):
     image = models.ImageField(upload_to='course/%Y/%m',max_length=200,verbose_name=u'封面图')
     # click_nums = models.IntegerField(default=0,verbose_name=u'点击数')
     practiceplace = models.ForeignKey(Practiceplace,null=True,blank=True,verbose_name=u'练习场地')
+    pay_mount = models.CharField(max_length=20,null=True,blank=True,verbose_name=u'支付金额')
+    discount = models.CharField(max_length=20,null=True,blank=True,verbose_name=u'优惠金额')
     add_time = models.DateTimeField(default=datetime.now,verbose_name=u'添加时间')
 
     class Meta:

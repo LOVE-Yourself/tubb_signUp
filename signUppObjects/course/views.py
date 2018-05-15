@@ -6,7 +6,7 @@ from .models import Course,Cost,Practiceplace
 from tradApp.models import Coupon
 from users.models import Banner
 from operation.models import UserCoupon
-
+from django.shortcuts import HttpResponseRedirect
 # from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 class Courselistview(View):
@@ -29,26 +29,33 @@ class CourseDetailView(View):
             course = Course.objects.get(id=course_id)
         except:
             print('【+】：没有取到相应课程')
-        try:
-            p_id = course.practiceplace_id
-            prac = Practiceplace.objects.get(id = p_id)
-            print('训练场地--》',p.title)
-        except:
-            print('出错')
 
-        return render(request,'curriculumDetail.html',{'course':course,'practice':prac})
+        return render(request,'curriculumDetail.html',{'course':course,})
 
-
-from tradApp.models import Coach_Orders
-from utils.about_pay import get_wxpayUrl,get_alipayUrl
 
 class CourseInfoView(View):
     def get(self,request,course_id):
-
+        user = request.user
         course = Course.objects.get(id=course_id)
+        user_coupons = UserCoupon.objects.filter(user=user)
+        if course.name == 'C1超越期望优质课':
+            style = '限C1报名'
+        else:
+            style = '限C2报名'
+        coupons = []
+        for user_coupon in user_coupons:
+            if user_coupon.coupon.belong_course == style:
+                if user_coupon.coupon.status == 'onused':
+                    coupons.append(user_coupon.coupon)
+        mount = 0
+        for coupon in coupons:
+            mount = mount + int(coupon.coupon_mount)
 
+        course.discount = str(mount)
+        course.pay_mount = int(course.cost_new) - mount
+        course.save()
 
-        return render(request,'course-video.html',{'course':course,'coach_order':coachOrder,'alipay_url':payUrl,'style':pay_type})
+        return render(request,'writeOrderForm.html',{'course':course,'coupons':coupons})
 
 from .models import Active
 import json
