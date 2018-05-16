@@ -6,7 +6,7 @@ from .models import Course,Cost,Practiceplace
 from tradApp.models import Coupon
 from users.models import Banner
 from operation.models import UserCoupon
-from django.shortcuts import HttpResponseRedirect
+
 # from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 class Courselistview(View):

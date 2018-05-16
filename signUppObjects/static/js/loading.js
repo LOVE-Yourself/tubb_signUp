@@ -118,7 +118,7 @@ $(".getCouponDiv.available .getCouponBtn").click(function () {
     });
 
 });
-
+//pay
 $(".orderForm  .payBtnDiv .payBtn").click(function () {
     var userName = $(".orderForm #userName").val();
     var curriculumName = $(".orderForm #curriculumName").text();
@@ -152,11 +152,12 @@ $(".orderForm  .payBtnDiv .payBtn").click(function () {
     console.log(userName+payMethod);
     $.ajax({
         type: 'POST',
-        url: appConfig.requestUrl + "/pay/payfor",
+        url: appConfig.requestUrl + "/pay/payfor/",
         data: {orderId:myDate.toStr()+rand,userName: userName, payMethod: payMethod,curriculumName:curriculumName,totalPayMoney:totalPayMoney},
         success: function (data) {
             if (data.status == 200){
-                alert("报名成功！")
+                // alert("报名成功！")
+                location.href=data.payUrl;
             }
 
         },

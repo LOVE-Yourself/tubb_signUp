@@ -39,7 +39,8 @@
 <div class="orderForm container">
     <div class="left col-md-8  col-md-8 col-xs-12 ">
         <div>
-            <div class="basicInf"><span>报名课程：</span><span>{{ course.name }}</span><span class="cPrice">￥{{ course.cost_new }}</span></div>
+            <div class="basicInf"><span>报名课程：</span><span id="curriculumName">{{ course.name }}</span><span class="cPrice">￥{{ course.cost_new }}</span></div>
+
             <div><span>真实姓名：</span><input placeholder="输入姓名" id="userName"><span class="error"> </span></div>
         </div>
         <div>
@@ -48,13 +49,13 @@
                 <div class="payDiv"><input class="form-check-input" type="radio" name="payMethod" id="aliPay"
                                            value="aliPay" checked>
                     <label class="form-check-label" for="aliPay">
-                        <img src="{% static '/images/alipay2x.png' %}">支付宝
+                        <img src="{% static 'images/alipay2x.png' %}">支付宝
                     </label></div>
                 <div class="payDiv"><input class="form-check-input" type="radio" name="payMethod" id="weixinPay"
                                            value="weixinPay"
                                            checked>
                     <label class="form-check-label" for="weixinPay">
-                        <img src="{% static '/images/weixin2x.png' %}"> 微信
+                        <img src="{% static 'images/weixin2x.png' %}"> 微信
                     </label></div>
             </div>
         </div>
@@ -99,7 +100,8 @@
         </div>
         <div class="finalCost">
             <div class="col-md-10 col-sm-10 col-xs-10"><span>应付总额：</span></div>
-            <div class="col-md-2 col-sm-2 col-xs-2"><span>￥{{ course.pay_mount }}</span></div>
+            <div class="col-md-2 col-sm-2 col-xs-2"><span class="unit">￥</span><span id="totalPayMoney">{{ course.pay_mount }}</span></div>
+
         </div>
         <div class="payBtnDiv">
             <div class="payBtn">

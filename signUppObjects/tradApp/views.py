@@ -21,36 +21,37 @@ from utils.about_pay import get_wxpayUrl,get_alipayUrl
 class Payfor(View):
     def post(self,request):
 
-        ordersn = request.POST.get('payOrderId','')
         course_name = request.POST.get('curriculumName','')
         username = request.POST.get('userName','')
         orderMount = request.POST.get('totalPayMoney','')
-        style_pay = request.GET.get('payMethod','')
-        if style_pay == '':
-            pay_type = 'aplipay'
-        else:
-            pay_type = style_pay
-
+        style_pay = request.POST.get('payMethod','')
+        ordersn1 = request.POST.get('orderId','')
+        print('---kecheng?--->',ordersn1)
         coachOrder = Coach_Orders()
-        coachOrder.order_sn = ordersn
+        coachOrder.order_sn = ordersn1
+
         coachOrder.course_name = course_name
         coachOrder.username = username
         coachOrder.order_mount = orderMount
-        coachOrder.pay_type = pay_type
+        coachOrder.pay_type = style_pay
         coachOrder.pay_mount = '1'
         coachOrder.order_status = 'WAIT_BUYER_PAY'
         coachOrder.user = request.user
         coachOrder.save()
 
-        if pay_type == 'wechat':
+        if style_pay == 'weixinPay':
             #微信支付
             payUrl = get_wxpayUrl(coachOrder.order_sn,coachOrder.pay_mount)
-            #重定向那个url
-            return HttpResponseRedirect(payUrl)
+            print('---那个url---》',payUrl)
+            #返回给前段
+            resp = {'status': 200, 'payUrl': payUrl,}
+            return HttpResponse(json.dumps(resp), content_type='application/json')
+
         else:
             payUrl = get_alipayUrl(coachOrder.order_sn, coachOrder.pay_mount)
-            return HttpResponseRedirect(payUrl)
-
+            print('---那个url---》', payUrl)
+            resp = {'status': 200, 'payUrl': payUrl,}
+            return HttpResponse(json.dumps(resp), content_type='application/json')
 
 #对返回来的url进行验证加密  防止别人伪造你的请求
 class AlipayReturnView(View):
@@ -62,7 +63,7 @@ class AlipayReturnView(View):
             alipay_public_key_path=ali_pub_key_path,
             # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,
             debug=True,  # 默认False,
-            return_url="http://192.168.192.131:8000/pay/alipay_return/"
+            return_url="http://192.168.192.137:8000/pay/alipay_return/"
         )
         #sss = request.GET.get('trade_no','')
         #支付成功 跳转回来
