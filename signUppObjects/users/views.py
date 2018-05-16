@@ -100,6 +100,7 @@ class GetveryCode(View):
     @csrf_exempt
     def post(self,request):
         telnum = request.POST.get('phone', '')
+        print('---号码发送验证码---->',telnum)
         send_type = request.POST.get('send_type','')
         if telnum == '':
             print('【获取验证码】电话号码为空')
