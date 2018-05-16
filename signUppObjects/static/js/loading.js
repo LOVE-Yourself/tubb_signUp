@@ -85,12 +85,12 @@ $(".curriculumDetail .entryBtn").click(function () {
     location.href = "../templates/writeOrderForm.html"
 
 })
-$(".curriculum  .detailBtn").click(function () {
-    var element = this;
-    var coupon = $(element).find("input.curri_id").val();
-    location.href = "../templates/curriculumDetail.html?curri_id=" + coupon + "&showGet=1";
-
-})
+//$(".curriculum  .detailBtn").click(function () {
+//    var element = this;
+//    var coupon = $(element).find("input.curri_id").val();
+//    location.href = "../templates/curriculumDetail.html?curri_id=" + coupon + "&showGet=1";
+//
+//})
 
 $(".nav-nav .user").click(function () {
     location.href = "../templates/personalOrder.html"
