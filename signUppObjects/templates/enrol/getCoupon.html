@@ -67,6 +67,57 @@
         </div>
     </div>
 </div>
+
+
+<div id="loginMask">
+    <div class="loginDiv">
+        <div class=" loginBg thumbnail">
+            <!--< img src="../static/images/loginPageBg.png" alt="Image"/>-->
+            <!--<div class="container">-->
+                <div class="login-table col-xs-12  col-sm-8 col-md-6 col-lg-6">
+                    <div>
+                        <h2>登录</h2>
+                    <form action="{% url 'user:login' %}" method="post" autocomplete="off">
+                    <div class="phone">
+                        <input id="phone" type="text" name="username" value="{{ login_form.username.value|default_if_none:'' }}" placeholder="输入你的手机号">
+                    </div>
+
+                    <div class="password">
+                        <input id="password" type="password" name="password" value="{{ login_form.password.value|default_if_none:'' }}" placeholder="输入密码">
+                    </div>
+
+                    <div class="verifyNum">
+                        {{ login_form.captcha }}
+                        <div class="changeNum">
+                            <a>换一张</a>
+                        </div>
+                        <input type='hidden'  name='active_code' value='{{ active.code }}' />
+                        <!--<input id="verifyNum" type="text" na me="verifyNum" placeholder="输入验证码">-->
+                        <!--<img src="images/" alt="1528">-->
+                        <input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="errorInf">
+                    {% for keys,error in login_form.errors.items %}
+                        <span> {{error}} </br></span>
+                    {% endfor %}
+                    </div>
+                    <div class="errorInf">
+                        <span> {{ msg }} </span>
+                    </div>
+                    <div class="toRegist"><a href="{% url 'user:forgetpwd' %}">忘记密码</a> <a href="{% url 'user:register' %}">立即注册</a></div>
+                    <input class="submit"  type="submit" value="登录" />
+                    <!--<button class="submit">登录</button>-->
+                    </form>
+                    </div>
+                    <div class="closeLoginModule"><button > <i class="fa fa-times "></i></button></div>
+                </div>
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
 {% endblock %}
 
 

@@ -85,7 +85,7 @@ class LoginView(View):
                 return render(request,'login.html',{'login_form':login_form,'msg':'用户名或密码错误'})
             else:
                 login(request, user)
-                return HttpResponseRedirect('/course/course_list/')
+                return HttpResponseRedirect('/course/active_detail/1')
                 #return render(request,'enrol.html')
         return render(request,'login.html',{'login_form':login_form})
 

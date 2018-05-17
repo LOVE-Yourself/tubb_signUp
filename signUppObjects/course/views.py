@@ -6,7 +6,7 @@ from .models import Course,Cost,Practiceplace
 from tradApp.models import Coupon
 from users.models import Banner
 from operation.models import UserCoupon
-
+from users.forms import LoginForm
 # from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 class Courselistview(View):
@@ -29,6 +29,7 @@ class CourseDetailView(View):
             course = Course.objects.get(id=course_id)
         except:
             print('【+】：没有取到相应课程')
+
 
         return render(request,'curriculumDetail.html',{'course':course,})
 
@@ -84,11 +85,25 @@ class ActiveDetail(View):
                 return render(request,'getCoupon.html',{'coupons':coupons,'active':active,'banners':banners,'usercoupons':l})
             except:
                 print('---未登录-->')
+                login_form = LoginForm()
                 # 每登录正常显示
                 active = Active.objects.get(code=active_id)
                 coupons = Coupon.objects.filter(active=active)
                 banners = Banner.objects.all()
-                return render(request, 'getCoupon.html', {'coupons': coupons, 'active': active, 'banners': banners})
+                return render(request, 'getCoupon.html', {'coupons': coupons, 'active': active, 'banners': banners,'login_form':login_form})
+
+    def post(self,request):
+        print('---登录失败-->')
+        login_form = LoginForm(request.POST)
+        active_code = request.POST.get('active_code','')
+        
+        # 每登录正常显示
+        active = Active.objects.get(code=active_code)
+        coupons = Coupon.objects.filter(active=active)
+        banners = Banner.objects.all()
+        return render(request, 'getCoupon.html',
+                      {'coupons': coupons, 'active': active, 'banners': banners, 'login_form': login_form})
+
 
                       
 class GetCoupon(View):
