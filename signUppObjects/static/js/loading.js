@@ -327,3 +327,4 @@ $("button.menuToRightBtn").click(function () {
 setTimeout(function () {
     showLogin();
 }, 1000)
+

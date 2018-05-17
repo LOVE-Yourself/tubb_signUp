@@ -62,6 +62,8 @@ import json
 class ActiveDetail(View):
     def get(self,request,active_id):
         if not request.user.is_authenticated:
+
+            print('----判断登录-->')
             #每登录正常显示
             active = Active.objects.get(code=active_id)
             coupons = Coupon.objects.filter(active=active)
@@ -69,16 +71,25 @@ class ActiveDetail(View):
             return render(request,'getCoupon.html',{'coupons':coupons,'active':active,'banners':banners})
         else:
             #判断 是否领取了  （coupon  是否在 UserCoupon）
-            user = request.user
-            print('--username-->',user.username)
-            usercoupons = UserCoupon.objects.filter(user=user)
-            l = []
-            for usercoupon in usercoupons:
-                l.append(usercoupon.coupon)
-            active = Active.objects.get(code=active_id)
-            coupons = Coupon.objects.filter(active=active)
-            banners = Banner.objects.all()
-            return render(request,'getCoupon.html',{'coupons':coupons,'active':active,'banners':banners,'usercoupons':l})
+            try:
+                user = request.user
+                print('--username-->',user.username)
+                usercoupons = UserCoupon.objects.filter(user=user)
+                l = []
+                for usercoupon in usercoupons:
+                    l.append(usercoupon.coupon)
+                active = Active.objects.get(code=active_id)
+                coupons = Coupon.objects.filter(active=active)
+                banners = Banner.objects.all()
+                return render(request,'getCoupon.html',{'coupons':coupons,'active':active,'banners':banners,'usercoupons':l})
+            except:
+                print('---未登录-->')
+                # 每登录正常显示
+                active = Active.objects.get(code=active_id)
+                coupons = Coupon.objects.filter(active=active)
+                banners = Banner.objects.all()
+                return render(request, 'getCoupon.html', {'coupons': coupons, 'active': active, 'banners': banners})
+
                       
 class GetCoupon(View):
     def get(self,request):
