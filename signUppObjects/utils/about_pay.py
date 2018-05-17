@@ -84,7 +84,7 @@ def get_alipayUrl(order_no, pay_mount):
         subject="测试订单2",
         out_trade_no=order_no,
         total_amount=pay_mount,
-        return_url="http://192.168.192.131:8000/pay/alipay_return/"
+        return_url="test.tuobaba.cn:5020/pay/alipay_return/"
 
     )
     re_url = "https://openapi.alipaydev.com/gateway.do?{data}".format(data=url)
