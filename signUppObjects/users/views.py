@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, hashers
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,HttpResponseRedirect
 from django.http import HttpResponseRedirect
 from django.views.generic import View
 from django.contrib.auth.hashers import make_password,check_password
@@ -85,7 +85,8 @@ class LoginView(View):
                 return render(request,'login.html',{'login_form':login_form,'msg':'用户名或密码错误'})
             else:
                 login(request, user)
-                return render(request,'enrol.html')
+                return HttpResponseRedirect('/course/course_list/')
+                #return render(request,'enrol.html')
         return render(request,'login.html',{'login_form':login_form})
 
 

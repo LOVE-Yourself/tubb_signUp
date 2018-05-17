@@ -1,4 +1,4 @@
-zloadPage();
+loadPage();
 $(window).resize(function () {
     loadPage();
 });
@@ -19,7 +19,7 @@ $(".getPhoneVerifyNum").click(function () {
         user.send_type = user.send_type = $('#send_type').val();
         $.ajax({
             type: 'POST',
-            url: "/users/getCode/",
+            url: appConfig.requestUrl + "/users/getCode/",
             data: user,
             success: function (data) {
                 if(data.status==200)
