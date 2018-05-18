@@ -96,7 +96,7 @@ class ActiveDetail(View):
         print('---登录失败-->')
         login_form = LoginForm(request.POST)
         active_code = request.POST.get('active_code','')
-        
+
         # 每登录正常显示
         active = Active.objects.get(code=active_code)
         coupons = Coupon.objects.filter(active=active)

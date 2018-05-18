@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="blankHeight"></div>
+<div class="banner">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for banner in banners %}
+            <div class="swiper-slide"><a href="{{ banner.url }}"><img src="{{ MEDIA_URL }}{{ banner.image }}"></a></div>
+            {% endfor %}
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+</div>
+<div class="main">
+    <div class="coupon container">
+        <h3>新春专享优惠</h3>
+        <div class="couponDiv">
+            {% for coupon in coupons %}
+            <div class="col-xs-12  col-sm-6 col-md-4 col-lg-3">
+                <div class="getCouponDiv {% if coupon in usercoupons  %} expire {% else %} available{% endif %}">
+                    <input class="couponId" value="123456789" style="display: none">
+                    <div class="leftDiv">
+                        <span class="moneyType">￥</span>
+                        <div class="price">{{ coupon.coupon_mount }}</div>
+                        <span class="activity">{{ active.title }}</span>
+                    </div>
+                    <div class="rightDiv">
+                        <div class="top">
+                            <span class="limit">【{{ coupon.belong_course }}】</span>
+                            <div class="getCouponBtn"><span>领取></span>
+                                <input class="couponId" value="{{ coupon.code }}" style="display: none">
+                                <input class="activeId" value="{{ active.code }}" style="display: none">
+                            </div>
+
+                        </div>
+                        <div class="expireDate"><span>{{ coupon.end_detail }}</span></div>
+                    </div>
+                    <div class="whiteCircle"></div>
+                    <div class="invalid"><span>已领取</span></div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="rule">
+            <h4>活动规则</h4>
+            <div>
+                <span>
+                {{ active.detail }}
+               </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="loginMask">
+    <div class="loginDiv">
+        <div class=" loginBg thumbnail">
+            <!--< img src="../static/images/loginPageBg.png" alt="Image"/>-->
+            <!--<div class="container">-->
+                <div class="login-table col-xs-12  col-sm-8 col-md-6 col-lg-6">
+                    <div>
+                        <h2>登录</h2>
+                    <form action="{% url 'user:login' %}" method="post" autocomplete="off">
+                    <div class="phone">
+                        <input id="phone" type="text" name="username" value="{{ login_form.username.value|default_if_none:'' }}" placeholder="输入你的手机号">
+                    </div>
+
+                    <div class="password">
+                        <input id="password" type="password" name="password" value="{{ login_form.password.value|default_if_none:'' }}" placeholder="输入密码">
+                    </div>
+
+                    <div class="verifyNum">
+                        {{ login_form.captcha }}
+                        <div class="changeNum">
+                            <a>换一张</a>
+                        </div>
+                        <input type='hidden'  name='active_code' value='{{ active.code }}' />
+                        <!--<input id="verifyNum" type="text" na me="verifyNum" placeholder="输入验证码">-->
+                        <!--<img src="images/" alt="1528">-->
+                        <input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="errorInf">
+                    {% for keys,error in login_form.errors.items %}
+                        <span> {{error}} </br></span>
+                    {% endfor %}
+                    </div>
+                    <div class="errorInf">
+                        <span> {{ msg }} </span>
+                    </div>
+                    <div class="toRegist"><a href="{% url 'user:forgetpwd' %}">忘记密码</a> <a href="{% url 'user:register' %}">立即注册</a></div>
+                    <input class="submit"  type="submit" value="登录" />
+                    <!--<button class="submit">登录</button>-->
+                    </form>
+                    </div>
+                    <div class="closeLoginModule"><button > <i class="fa fa-times "></i></button></div>
+                </div>
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block custom_js %}
+        <script src="{% static 'js/swiper.min.js' %}"></script>
+<script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        direction: 'horizontal',
+        loop: true,
+
+        // 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        speed:800,
+        autoplay:true,
+        loop : true,
+        loopAdditionalSlides : 2,
+        autoplayDisableOnInteraction : false,
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }
+    })
+</script>
+
+{% endblock %}
+
+

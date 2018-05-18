@@ -324,7 +324,4 @@ $("button.menuToRightBtn").click(function () {
     $(".individualCenter .menuToRightBtn i ").toggleClass("fa-angle-right");
     $(".individualCenter .menuToRightBtn i").toggleClass("fa-angle-left");
 })
-setTimeout(function () {
-    showLogin();
-}, 1000)
 
