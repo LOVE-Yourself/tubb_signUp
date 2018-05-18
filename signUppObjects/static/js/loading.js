@@ -152,7 +152,7 @@ $(".orderForm  .payBtnDiv .payBtn").click(function () {
     console.log(userName+payMethod);
     $.ajax({
         type: 'POST',
-        url: 'test.tuobaba.cn:5020'+ "/pay/payfor/",
+        url: 'http://test.tuobaba.cn:5020'+ "/pay/payfor/",
         data: {orderId:myDate.toStr()+rand,userName: userName, payMethod: payMethod,curriculumName:curriculumName,totalPayMoney:totalPayMoney},
         success: function (data) {
             if (data.status == 200){

@@ -19,6 +19,8 @@ from driverSchool.models import Coach
 from utils.about_pay import get_wxpayUrl,get_alipayUrl
 
 class Payfor(View):
+    def get(self,request):
+        print('-----这是GET--方法---->',)
     def post(self,request):
 
         course_name = request.POST.get('curriculumName','')
