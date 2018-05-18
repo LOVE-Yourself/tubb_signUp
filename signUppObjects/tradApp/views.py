@@ -169,7 +169,6 @@ class wxpay_View(View):
 
 '''
 
-
 from utils.about_pay import response_dict
 from utils.util import dict_xml
 #支付成功回调

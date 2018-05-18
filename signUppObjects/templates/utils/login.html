@@ -81,7 +81,8 @@
                     <div class="password">
                         <input id="password" type="password" name="password" value="{{ login_form.password.value|default_if_none:'' }}" placeholder="输入密码">
                     </div>
-
+                        <input type='hidden'  name='j' value='{{ j }}' />
+                        <input type='hidden'  name='course_id' value='{{ course_id }}' />
                     <div class="verifyNum">
                         {{ login_form.captcha }}
                         <div class="changeNum">
@@ -90,6 +91,8 @@
                         <!--<input id="verifyNum" type="text" na me="verifyNum" placeholder="输入验证码">-->
                         <!--<img src="images/" alt="1528">-->
                         <input type='hidden' id='csrfmiddlewaretoken' name='csrfmiddlewaretoken' value='5I2SlleZJOMUX9QbwYLUIAOshdrdpRcy' />
+
+
                         <div class="clear"></div>
                     </div>
 

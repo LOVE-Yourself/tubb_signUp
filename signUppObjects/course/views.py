@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,HttpResponseRedirect
 from django.views.generic import View
 from operation.models import UserCourse
 from django.db.models import Q
@@ -36,27 +36,30 @@ class CourseDetailView(View):
 
 class CourseInfoView(View):
     def get(self,request,course_id):
-        user = request.user
-        course = Course.objects.get(id=course_id)
-        user_coupons = UserCoupon.objects.filter(user=user)
-        if course.name == 'C1超越期望优质课':
-            style = '限C1报名'
-        else:
-            style = '限C2报名'
-        coupons = []
-        for user_coupon in user_coupons:
-            if user_coupon.coupon.belong_course == style:
-                if user_coupon.coupon.status == 'onused':
-                    coupons.append(user_coupon.coupon)
-        mount = 0
-        for coupon in coupons:
-            mount = mount + int(coupon.coupon_mount)
+        try:
+            user = request.user
+            course = Course.objects.get(id=course_id)
+            user_coupons = UserCoupon.objects.filter(user=user)
+            if course.name == 'C1超越期望优质课':
+                style = '限C1报名'
+            else:
+                style = '限C2报名'
+            coupons = []
+            for user_coupon in user_coupons:
+                if user_coupon.coupon.belong_course == style:
+                    if user_coupon.coupon.status == 'onused':
+                        coupons.append(user_coupon.coupon)
+            mount = 0
+            for coupon in coupons:
+                mount = mount + int(coupon.coupon_mount)
 
-        course.discount = str(mount)
-        course.pay_mount = int(course.cost_new) - mount
-        course.save()
+            course.discount = str(mount)
+            course.pay_mount = int(course.cost_new) - mount
+            course.save()
 
-        return render(request,'writeOrderForm.html',{'course':course,'coupons':coupons})
+            return render(request,'writeOrderForm.html',{'course':course,'coupons':coupons})
+        except:
+            return HttpResponseRedirect('/users/login/?j=2&course_id={0}'.format(course_id))
 
 from .models import Active
 import json

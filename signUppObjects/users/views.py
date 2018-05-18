@@ -69,25 +69,35 @@ class ForgetView(View):
 class LoginView(View):
     def get(self,request):
         login_form = LoginForm()
-
-        return render(request,'login.html',{'login_form':login_form})
+        j = request.GET.get('j', '')
+        course_id = request.GET.get('course_id', '')
+        return render(request,'login.html',{'login_form':login_form,'j':j,'course_id':course_id})
     def post(self,request):
         login_form = LoginForm(request.POST)
+        j = request.POST.get('j', '')
+        course_id = request.POST.get('course_id', '')
+        print('---->j', j)
+
         if login_form.is_valid():
             username = request.POST.get('username','')
             password1 = request.POST.get('password','')
+
             try:
                 user = UserProfile.objects.get(username=username)
             except:
-                return render(request,'login.html',{'login_form':login_form,'msg':'该手机号未注册'})
+                return render(request,'login.html',{'login_form':login_form,'msg':'该手机号未注册','j':j,'course_id':course_id})
             user = authenticate(username = username,password = password1)
             if user is  None:
-                return render(request,'login.html',{'login_form':login_form,'msg':'用户名或密码错误'})
+                return render(request,'login.html',{'login_form':login_form,'msg':'用户名或密码错误','j':j,'course_id':course_id})
             else:
                 login(request, user)
+
+
+                if j == '2':
+                    return HttpResponseRedirect('/course/course_info/{0}'.format(course_id))
                 return HttpResponseRedirect('/course/active_detail/1')
                 #return render(request,'enrol.html')
-        return render(request,'login.html',{'login_form':login_form})
+        return render(request,'login.html',{'login_form':login_form,'j':j,'course_id':course_id})
 
 
 from utils.send_code import YunPian
