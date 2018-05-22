@@ -141,8 +141,11 @@ class NotyfileReturnView(View):
         )
         # sss = request.GET.get('trade_no','')
         # 支付成功 跳转回来
+        alipay_post = request.body
         o = urlparse(request.get_full_path())
-        print('这是post-----url',o)
+
+        print('这是post-----body',alipay_post)
+        print(type(alipay_post))
         query = parse_qs(o.query)
         processed_query = {}
         ali_sign = query.pop("sign")[0]
