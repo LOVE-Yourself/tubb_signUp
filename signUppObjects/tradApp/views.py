@@ -72,12 +72,14 @@ class AlipayReturnView(View):
         #sss = request.GET.get('trade_no','')
         #支付成功 跳转回来
         o = urlparse(request.get_full_path())
+        print('oooooo--->',o)
         query = parse_qs(o.query)
         processed_query = {}
         ali_sign = query.pop("sign")[0]
         for key, value in query.items():
             print('---??---->',key)
             processed_query[key] = value[0]
+        print('--拿到这个和它比-------》》',processed_query)
         s = alipay.verify(processed_query,ali_sign)#比对跳转回来的信息参数与之前发过去的信息参数（加密的sign）
         if s:
             #获取数据库里的记录
@@ -145,8 +147,34 @@ class NotyfileReturnView(View):
         o = urlparse(request.get_full_path())
         o1 = alipay_post.decode()
         print('这是post-----body-->',o1)
+
+        '''
+        gmt_create=2018-05-22+17%3A14%3A44
+        &charset=utf-8
+        &gmt_payment=2018-05-22+17%3A14%3A50
+        &notify_time=2018-05-22+17%3A18%3A21
+        &subject=%E6%B5%8B%E8%AF%95%E8%AE%A2%E5%8D%952
+        &sign=iwa4KKBwvuU1zqneGlOX27FqBAylV7DBXrFSB7BagLfmPuwB75GlX3LYKmPhaFGT7RCdniRUkh6KhN0SbjwP%2Fse8f1NsRet72zXLkzCQJP7NPkZ51sDnEFkyuWGTcNuo8ZAg8JE4tRAVhMkM2cvagFdSiviYrsCJOHJKfkBcjseXkSgus9p3EAShfk72G4DzIKL6W52ATJxDychkT%2F%2BCKDJzsKYfuPv3QR5U8STAC2WIVBU3JGfdOXbWtwRu65R0TERVS%2FfqhT4sgEoUKVtO%2F9nCkrqFG3EZ8fhW3MIJH34UL4vKATfsoJHZTpwp05XtFHj8jngir7sbi9B%2BjFGPTQ%3D%3D
+        &buyer_id=2088102175529369
+        &invoice_amount=1.00
+        &version=1.0
+        &notify_id=dd06dc31c890a52b5868c33a883800fis2
+        &fund_bill_list=%5B%7B%22amount%22%3A%221.00%22%2C%22fundChannel%22%3A%22ALIPAYACCOUNT%22%7D%5D
+        &notify_type=trade_status_sync
+        &out_trade_no=2018522171653247
+        &total_amount=1.00
+        &trade_status=TRADE_SUCCESS
+        &trade_no=2018052221001004360200266184
+        &auth_app_id=2016091100490098&receipt_amount=1.00
+        &point_amount=0.00
+        &app_id=2016091100490098
+        &buyer_pay_amount=1.00
+        &sign_type=RSA2
+        &seller_id=2088102175219121
+'''
         print(type(o1))
         query = parse_qs(o.query)
+
         processed_query = {}
         ali_sign = query.pop("sign")[0]
         for key, value in query.items():
