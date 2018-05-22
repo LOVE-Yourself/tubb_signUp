@@ -58,6 +58,7 @@ class Payfor(View):
 #对返回来的url进行验证加密  防止别人伪造你的请求 pc端口
 class AlipayReturnView(View):
     def get(self,request):
+
         alipay = AliPay(
             appid="2016091100490098",
             app_notify_url="test.tuobaba.cn:5020/pay/notyfile_return/",
@@ -67,6 +68,7 @@ class AlipayReturnView(View):
             debug=True,  # 默认False,
             return_url="test.tuobaba.cn:5020/pay/alipay_return/"
         )
+
         #sss = request.GET.get('trade_no','')
         #支付成功 跳转回来
         o = urlparse(request.get_full_path())
@@ -88,23 +90,25 @@ class AlipayReturnView(View):
                 coachOrder.trade_no = trade_no
                 coachOrder.order_status = order_status
                 coachOrder.pay_time = datetime.now()
+                coachOrder.user = request.user
                 coachOrder.save()
-                users = UserProfile.objects.filter(Coach_Orders_id=coachOrder.id)
-                for user in users:
-                    user.order_name = coachOrder.coach_name
-                    user.save()
-                #改变教练的学生人数
-                coachs = Coach.objects.filter(name=coachOrder.coach_name)
-                for coach in coachs:
-                    coach.students += 1
-                    coach.save()
-            resp = 'success'
+                # users = UserProfile.objects.filter(Coach_Orders_id=coachOrder.id)
+                # for user in users:
+                #     user.order_name = coachOrder.coach_name
+                #     user.save()
+                # #改变教练的学生人数
+                # coachs = Coach.objects.filter(name=coachOrder.coach_name)
+                # for coach in coachs:
+                #     coach.students += 1
+                #     coach.save()
+                # 返回成功界面
+
+                success = ''
+                return success
+                #return render(request,'paySuccess.html',{'order_no':coachOrder.trade_no,'singup_time':coachOrder.pay_time})
         else:
-            resp = {'code': 500, 'detail': 'postchengg'}
-
-        #更改用户表教练名称
-
-        return HttpResponse(json.dumps(resp),content_type='application/json')
+            resp = {'code': 500, 'detail': '支付失败'}
+            return HttpResponse(json.dumps(resp), content_type='application/json')
 
 
     def post(self,request):
@@ -117,18 +121,63 @@ class AlipayReturnView(View):
 #手机支付回调
 class NotyfileReturnView(View):
     def get(self,request):
-
         resp = {'code':666,'detail':'postchengg'}
+
         print('---------------get---------------?>>>>>>>>>>>>')
+
         #支付成功 跳转回来
         return HttpResponse(json.dumps(resp),content_type='application/json')
 
 
     def post(self,request):
-        resp = {'code':333,'detail':'postchengg'}
-        print('--------------post----------------?>>>>>>>>>>>>')
-        #支付成功 跳转回来
-        return HttpResponse(json.dumps(resp),content_type='application/json')
+        alipay = AliPay(
+            appid="2016091100490098",
+            app_notify_url="test.tuobaba.cn:5020/pay/notyfile_return/",
+            app_private_key_path=private_key_path,
+            alipay_public_key_path=ali_pub_key_path,
+            # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,
+            debug=True,  # 默认False,
+            return_url="test.tuobaba.cn:5020/pay/alipay_return/"
+        )
+        # sss = request.GET.get('trade_no','')
+        # 支付成功 跳转回来
+        o = urlparse(request.get_full_path())
+        print('这是post-----url',o)
+        query = parse_qs(o.query)
+        processed_query = {}
+        ali_sign = query.pop("sign")[0]
+        for key, value in query.items():
+            print('---??---->', key)
+            processed_query[key] = value[0]
+        s = alipay.verify(processed_query, ali_sign)  # 比对跳转回来的信息参数与之前发过去的信息参数（加密的sign）
+        if s:
+            # 获取数据库里的记录
+            trade_no = processed_query['trade_no']
+            # order_status = processed_query['trade_status']
+            order_status = 'TRADE_SUCCESS'
+            order_sn = processed_query['out_trade_no']
+            coachOrders = Coach_Orders.objects.filter(order_sn=order_sn)
+            for coachOrder in coachOrders:
+                coachOrder.trade_no = trade_no
+                coachOrder.order_status = order_status
+                coachOrder.pay_time = datetime.now()
+                coachOrder.user = request.user
+                coachOrder.save()
+                # users = UserProfile.objects.filter(Coach_Orders_id=coachOrder.id)
+                # for user in users:
+                #     user.order_name = coachOrder.coach_name
+                #     user.save()
+                # #改变教练的学生人数
+                # coachs = Coach.objects.filter(name=coachOrder.coach_name)
+                # for coach in coachs:
+                #     coach.students += 1
+                #     coach.save()
+                # 返回成功界面
+            success = ''
+            return success
+        print('[+]:---------->pay_failure')
+        failure = ''
+        return failure
 
 
 
