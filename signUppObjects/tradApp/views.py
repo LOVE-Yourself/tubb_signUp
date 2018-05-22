@@ -61,12 +61,14 @@ class AlipayReturnView(View):
 
         alipay = AliPay(
             appid="2016091100490098",
-            app_notify_url="test.tuobaba.cn:5020/pay/notyfile_return/",
+            #app_notify_url="test.tuobaba.cn:5020/pay/notyfile_return/",
+            app_notify_url="http://192.168.192.137:8000/pay/alipay_return/",
             app_private_key_path=private_key_path,
             alipay_public_key_path=ali_pub_key_path,
             # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,
             debug=True,  # 默认False,
-            return_url="test.tuobaba.cn:5020/pay/alipay_return/"
+            #return_url="test.tuobaba.cn:5020/pay/alipay_return/",
+            return_url="http://192.168.192.137:8000/pay/alipay_return/",
         )
 
         #sss = request.GET.get('trade_no','')
@@ -124,12 +126,9 @@ class AlipayReturnView(View):
 class NotyfileReturnView(View):
     def get(self,request):
         resp = {'code':666,'detail':'postchengg'}
-
         print('---------------get---------------?>>>>>>>>>>>>')
-
         #支付成功 跳转回来
         return HttpResponse(json.dumps(resp),content_type='application/json')
-
 
     def post(self,request):
         alipay = AliPay(

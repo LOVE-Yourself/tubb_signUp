@@ -73,18 +73,18 @@ from Lyonline.settings import private_key_path, ali_pub_key_path, QR_code_path
 def get_alipayUrl(order_no, pay_mount):
     alipay = AliPay(
         appid="2016091100490098",
-        app_notify_url="test.tuobaba.cn:5020/pay/notyfile_return/",
+        app_notify_url="192.168.192.137:8000/pay/alipay_return/",
         app_private_key_path=private_key_path,
         alipay_public_key_path=ali_pub_key_path,
         # 支付宝的公钥，验证支付宝回传消息使用，不是你自己的公钥,
         debug=True,  # 默认False,
-        return_url="test.tuobaba.cn:5020/pay/alipay_return/"
+        return_url="192.168.192.137:8000/pay/alipay_return/"
     )
     url = alipay.direct_pay(
         subject="测试订单2",
         out_trade_no=order_no,
         total_amount=pay_mount,
-        return_url="test.tuobaba.cn:5020/pay/alipay_return/"
+        return_url="192.168.192.137:8000/pay/alipay_return/"
 
     )
     re_url = "https://openapi.alipaydev.com/gateway.do?{data}".format(data=url)
