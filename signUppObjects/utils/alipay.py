@@ -34,7 +34,7 @@ class AliPay(object):
         with open(self.alipay_public_key_path) as fp:
             print('此时刺客吟诗一首')
 
-            self.alipay_public_key = RSA.import_key(fp.read())
+            self.alipay_public_key = RSA.importKey(fp.read())
             print('为什么这样？？--->',self.alipay_public_key)
 
         if debug is True:
