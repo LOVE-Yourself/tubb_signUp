@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import LoginView,RegistView,GetveryCode,ForgetView,UserInfoView,UserUploadImageView,UserUploadPwd
+from .views import LoginView,RegistView,GetveryCode,ForgetView,UserInfoView,UserOrderView,UserCouponView,UserUploadImageView,UserUploadPwd
 
 urlpatterns = [
 
@@ -13,6 +13,9 @@ urlpatterns = [
     # url(r'changeagin/',AginChange.as_view(),name='change_agin'),
 
     url(r'user_info/',UserInfoView.as_view(),name='user_info'),
+    url(r'user_order/',UserOrderView.as_view(),name='user_order'),
+    url(r'user_coupon/',UserCouponView.as_view(),name='user_coupon'),
+
     url(r'user_upload_image/',UserUploadImageView.as_view(),name='upload_image'),
     url(r'update/pwd/',UserUploadPwd.as_view(),name='upload_pwd'),
 

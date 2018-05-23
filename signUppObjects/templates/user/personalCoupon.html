@@ -26,7 +26,7 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
                      aria-expanded="true" style="height: 0px;">
-                    <a aria-controls="#userInformation" href="personalInfo.html">
+                    <a aria-controls="#userInformation" href="{% url 'user:user_info' %}">
                         <div class="panel-body">
                             <i class="icon fa fa-cog ">
                                 <!--<img src="{% static 'images/iconAccount2x.png"/>-->
@@ -56,7 +56,7 @@
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingThree"
                      aria-expanded="true" style="height: 0px;">
-                    <a aria-controls="#entryOrderContent" href="personalOrder.html">
+                    <a aria-controls="#entryOrderContent" href="{% url 'user:user_order' %}">
                         <div class="panel-body">
                             <i class="icon "><img src="{% static 'images/iconCoupon2x.png' %}"></i>
                             <p>报名订单 </p>
@@ -81,7 +81,7 @@
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree"
                      aria-expanded="true" style="height: 0px;">
-                    <a aria-controls="#myCouponContent" href="personalCoupon.html">
+                    <a aria-controls="#myCouponContent" href="{% url 'user:user_coupon' %}">
                         <div class="panel-body">
                             <i class="icon "><img src="{% static 'images/iconCoupon2x.png' %}"></i>
                             <p>优惠券 </p>
@@ -99,168 +99,44 @@
             <h4>优惠券</h4>
             <div class="myCoupon ">
                 <div class="formHead tabs">
-                    <span class="active">未使用</span>
-                    <span>已使用</span>
-                    <span>已过期</span>
+
+                    <a href="?ct=onused"><span  class="{% ifequal status 'onused' %}active{% endifequal %}">未使用</span></a>
+                    <a href="?ct=used"><span  class="{% ifequal status 'used' %}active{% endifequal %}">已使用</span></a>
+                    <a href="?ct=used"><span  class="{% ifequal status 'outdate' %}active{% endifequal %}">已经过期</span></a>
                 </div>
                 <div class="formBody ">
-                    <div class="tabContent active">
-                        <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  active">
+                    <div class="tabContent">
+                        {% for user_coupon in usercoupons %}
+                        {% ifequal user_coupon.coupon.status 'onused'%}
+                        <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  {% ifequal status 'onused' %}active{% else %}expire{% endifequal %}">
+
                             <div class="leftDiv">
                                 <span class="moneyType">￥</span>
-                                <div class="price">20</div>
-                                <span class="activity">新春活动</span>
+                                <div class="price"> {{ user_coupon.coupon.coupon_mount }}</div>
+                                <span class="activity">新春活动{{ user_coupon.coupon.active.title }}</span>
                             </div>
                             <div class="rightDiv">
                                 <div class="top">
-                                    <div class="superposed"><span>可叠加</span><input class="couponId" value="9876"
+                                    <div class="superposed"><span>可叠加{{ user_coupon.coupon.isover }}</span><input class="couponId" value="9876"
                                                                                    style="display: none"></div>
-                                    <span class="limit">【限C1报名】</span>
+                                    <span class="limit">【{{ user_coupon.coupon.belong_course }}】</span>
                                     <div class="getCouponBtn"><span>立即使用</span><input class="couponId" value="89"
                                                                                       style="display: none"></div>
 
 
                                 </div>
-                                <div class="expireDate"><span>自领取之日起30天有效</span></div>
+                                <div class="expireDate"><span>自领取之日起30天有效{{ coupon.end_detail }}</span></div>
                             </div>
                             <div class="whiteCircle"></div>
                             <div class="invalid"><span>已领取</span>
                             </div>
                         </div>
-                        <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  active">
-                            <div class="leftDiv">
-                                <span class="moneyType">￥</span>
-                                <div class="price">20</div>
-                                <span class="activity">新春活动</span>
-                            </div>
-                            <div class="rightDiv">
-                                <div class="top">
-                                    <div class="superposed"><span>可叠加</span><input class="couponId" value="9876"
-                                                                                   style="display: none"></div>
-                                    <span class="limit">【限C1报名】</span>
-                                    <div class="getCouponBtn"><span>立即使用</span><input class="couponId" value="89"
-                                                                                      style="display: none"></div>
-                                </div>
-                                <div class="expireDate"><span>自领取之日起30天有效</span></div>
-                            </div>
-                            <div class="whiteCircle"></div>
-                            <div class="invalid"><span>已领取</span>
-                            </div>
-                        </div>
+                        {% else %}
+                        {% endifequal %}
+                        {% endfor %}
                     </div>
-                    <div class="tabContent">
-                        <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  expire">
-                            <div class="leftDiv">
-                                <span class="moneyType">￥</span>
-                                <div class="price">20</div>
-                                <span class="activity">新春活动</span>
-                            </div>
-                            <div class="rightDiv">
-                                <div class="top">
-                                    <div class="superposed"><span>可叠加</span><input class="couponId" value="9876"
-                                                                                   style="display: none"></div>
-                                    <span class="limit">【限C1报名】</span>
-                                    <div class="getCouponBtn"><span>立即使用</span><input class="couponId" value="89"
-                                                                                      style="display: none"></div>
-                                </div>
-                                <div class="expireDate"><span>自领取之日起30天有效</span></div>
-                            </div>
-                            <div class="whiteCircle"></div>
-                            <div class="invalid"><span>已使用</span>
-                            </div>
-                        </div>
-
-                        <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  expire">
-                            <div class="leftDiv">
-                                <span class="moneyType">￥</span>
-                                <div class="price">20</div>
-                                <span class="activity">新春活动</span>
-                            </div>
-                            <div class="rightDiv">
-                                <div class="top">
-                                    <div class="superposed"><span>可叠加</span><input class="couponId" value="9876"
-                                                                                   style="display: none"></div>
-                                    <span class="limit">【限C1报名】</span>
-                                    <div class="getCouponBtn"><span>立即使用</span><input class="couponId" value="89"
-                                                                                      style="display: none"></div>
-
-
-                                </div>
-                                <div class="expireDate"><span>自领取之日起30天有效</span></div>
-                            </div>
-                            <div class="whiteCircle"></div>
-                            <div class="invalid"><span>已使用</span>
-                            </div>
-                        </div>
-                        <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  expire">
-                            <div class="leftDiv">
-                                <span class="moneyType">￥</span>
-                                <div class="price">20</div>
-                                <span class="activity">新春活动</span>
-                            </div>
-                            <div class="rightDiv">
-                                <div class="top">
-                                    <div class="superposed"><span>可叠加</span><input class="couponId" value="9876"
-                                                                                   style="display: none"></div>
-                                    <span class="limit">【限C1报名】</span>
-                                    <div class="getCouponBtn"><span>立即使用</span><input class="couponId" value="89"
-                                                                                      style="display: none"></div>
-                                </div>
-                                <div class="expireDate"><span>自领取之日起30天有效</span></div>
-                            </div>
-                            <div class="whiteCircle"></div>
-                            <div class="invalid"><span>已使用</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tabContent">
-                        <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  expire">
-                            <div class="leftDiv">
-                                <span class="moneyType">￥</span>
-                                <div class="price">120</div>
-                                <span class="activity">新春活动</span>
-                            </div>
-                            <div class="rightDiv">
-                                <div class="top">
-                                    <div class="superposed"><span>可叠加</span><input class="couponId" value="9876"
-                                                                                   style="display: none"></div>
-                                    <span class="limit">【限C1报名】</span>
-                                    <div class="getCouponBtn"><span>立即使用</span><input class="couponId" value="89"
-                                                                                      style="display: none"></div>
-
-
-                                </div>
-                                <div class="expireDate"><span>自领取之日起30天有效</span></div>
-                            </div>
-                            <div class="whiteCircle"></div>
-                            <div class="invalid"><span>已过期</span>
-                            </div>
-                        </div>
-                        <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  expire">
-                            <div class="leftDiv">
-                                <span class="moneyType">￥</span>
-                                <div class="price">200</div>
-                                <span class="activity">新春活动</span>
-                            </div>
-                            <div class="rightDiv">
-                                <div class="top">
-                                    <div class="superposed"><span>可叠加</span><input class="couponId" value="9876"
-                                                                                   style="display: none"></div>
-                                    <span class="limit">【限C1报名】</span>
-                                    <div class="getCouponBtn"><span>立即使用</span><input class="couponId" value="89"
-                                                                                      style="display: none"></div>
-                                </div>
-                                <div class="expireDate"><span>自领取之日起30天有效</span></div>
-                            </div>
-                            <div class="whiteCircle"></div>
-                            <div class="invalid"><span>已过期</span>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
-
 
             <div>
 

@@ -88,7 +88,22 @@
 </div>
 {% endblock %}
 
+{% block phone %}
+<div class="menuOfPhone">
+    <div class="nav-con active">
+        <a href="{% url 'course:courseList' %}">
+            <div class="mainPage"></div>
+            <span>首页</span>
+        </a>
+    </div>
+    <div class="nav-con">
 
+        <a href="{% url 'user:user_info' %}">
+            <div class="personalPage"></div>
+            <span>个人中心</span></a>
+    </div>
+</div>
+{% endblock %}
 
 {% block custom_js %}
         <script src="{% static 'js/swiper.min.js' %}"></script>

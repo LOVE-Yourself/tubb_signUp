@@ -232,6 +232,7 @@ a:focus, a:hover {
 .nav .nav-s .nav-nav .nav-ul .nav-li:nth-child(6):hover ~ .nav-li1 {
     margin-left: 520px
 }
+
 .index-body {
     background: url(../images/indexbg.jpg) center top no-repeat;
     width: 100%;
@@ -240,6 +241,7 @@ a:focus, a:hover {
     top: 0;
     z-index: -999;
 }
+
 .banner {
     width: 100%;
     /*height: 250px;*/
@@ -1259,22 +1261,92 @@ button.submit {
     color: #C1C1C1;
 }
 
+.nav .nav-s span {
+    display: none;
+
+}
+
+.nav .nav-s .callTBB, .nav .nav-s .onlineServer {
+    display: none;
+}
+
+.menuOfPhone {
+    display: none;
+    width: 100%;
+    background: white;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    flex-flow: row;
+    justify-content: space-around;
+    height: 50px;
+    align-items: center;
+}
+
 @media (max-width: 768px) {
     .switchMenuBtn {
-        display: block;
+        /*display: block;*/
     }
+
     .loginBg .container {
-       width: 100%;
+        width: 100%;
     }
+
     .login-table, .register-table > div {
         width: 100%;
     }
+
     .nav-nav {
         position: absolute;
         right: 0px;
         top: 40px;
         display: none;
 
+    }
+
+    .nav .nav-s {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+    }
+
+    .nav .nav-s span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        font-weight: 500;
+
+    }
+
+    .nav .nav-s .nav-log {
+        background: rgba(253, 253, 253, 0);
+        display: flex;
+        justify-content: space-between;
+        padding: 0 8px;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav .nav-s i {
+        color: #323232;
+        font-size: 3.8rem;
+    }
+
+    .nav .nav-s .callTBB {
+        display: flex;
+        width: 24px;
+        height: 24px;
+        background: url("../images/tbbCall2x.png") center no-repeat;
+        background-size: 100%;
+    }
+
+    .nav .nav-s .onlineServer {
+        display: flex;
+        width: 24px;
+        height: 24px;
+        background: url("../images/onlineServer.png") center no-repeat;
+        background-size: 100%;
     }
 
     .nav .nav-s .nav-nav .nav-ul .nav-li {
@@ -1302,6 +1374,52 @@ button.submit {
 
     .user {
         margin: -38px 0 0 6px;
+    }
+
+    .menuOfPhone {
+        display: flex;
+    }
+
+    .menuOfPhone .nav-con {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    .menuOfPhone .nav-con.active span {
+        color: #00CA78;
+
+    }
+    .menuOfPhone .nav-con span {
+        color: #C3C3C3;
+    }
+
+    .menuOfPhone .mainPage, .menuOfPhone .personalPage {
+        width: 24px;
+        height: 24px;
+
+    }
+
+    .menuOfPhone .mainPage {
+        margin: 0 auto;
+        background: url("../images/mainPage2x.png") no-repeat;
+        background-size: 100%;
+
+    }
+    .menuOfPhone .nav-con.active .mainPage {
+        background: url("../images/mainPageOn2x.png") no-repeat;
+        background-size: 100%;
+
+    }
+    .menuOfPhone .nav-con.active .personalPage {
+        background: url("../images/personalPageOn2x.png") no-repeat;
+        background-size: 100%;
+
+    }
+    .menuOfPhone .personalPage {
+        margin: 0 auto;
+        background: url("../images/personalPage2x.png") no-repeat;
+        background-size: 100%;
+
     }
 }
 
@@ -1381,7 +1499,7 @@ button.submit {
 
 @media (max-width: 768px) {
     .worrysDiv .worrys > div .circlePic {
-        width:84px;
+        width: 84px;
         height: 84px;
     }
 
@@ -1758,6 +1876,11 @@ span.activity {
 
 }
 
+.promiseDiv {
+    overflow: hidden;
+
+}
+
 .promiseDiv > div > div {
     background: white;
     padding: 12px;
@@ -1770,26 +1893,40 @@ span.activity {
 }
 
 .promiseDiv > div:last-of-type {
-
+    height: 168px;
 }
 
 .promiseDiv .pic {
-    width: 490px;
+    width: 100%;
     height: 208px;
-    background: url("../images/practicePlace2x.png") no-repeat;
-    background-size: 100%;
+    /*background: url("../images/practicePlace2x.png") no-repeat;*/
+    /*background-size: 100%;*/
+}
+
+#allmap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    font-family: "微软雅黑";
+}
+
+.trainPlaceInfoWin img {
+    width: 100%;
+    height: 100%;
+
 }
 
 @media (max-width: 768px) {
     .promiseDiv > div > div {
 
-        height: 158px;
+        height: 368px;
 
     }
 
     .promiseDiv .pic {
         width: 100%;
-        height: 148px;
+        height: 360px;
         background: url("../images/practicePlace.png");
     }
 
@@ -1815,12 +1952,15 @@ span.activity {
     height: 100px;
     box-shadow: 0 1px 2px 0px #CCCCCC;
 }
-.chargeDetail .leftDiv > div>div{
-     width: 16%;
- }
-.chargeDetail .leftDiv > div>div:nth-of-type(2){
+
+.chargeDetail .leftDiv > div > div {
+    width: 16%;
+}
+
+.chargeDetail .leftDiv > div > div:nth-of-type(2) {
     width: 20%;
 }
+
 .chargeDetail .leftDiv > div span {
     display: flex;
     width: 100%;
@@ -1829,6 +1969,7 @@ span.activity {
     align-items: center;
     justify-content: center;
     border-bottom: 1px solid #e8e8e8;
+
 }
 
 .explain {
@@ -1856,8 +1997,9 @@ span.activity {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 50px;
-        padding: 20px 108px;
+        height: 200px;
+        padding: 0px;
+        border: 1px solid #e8e8e8;
     }
 
     .orderProgress {
@@ -1865,6 +2007,54 @@ span.activity {
         top: 43px;
         width: 68%;
         left: 17%;
+    }
+
+    .chargeDetail {
+        width: 100%;
+        display: table;
+        background: white;
+        margin: 12px  0 76px 0;
+         box-shadow: 0px 0px 0px 0px #e7e7e7;
+
+    }
+
+    .chargeDetail .leftDiv {
+        position: static;
+    }
+    .chargeDetail .leftDiv > div span{
+        border: 1px solid #e8e8e8;
+    }
+
+    .chargeDetail .leftDiv > div:first-of-type {
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+        justify-content: space-around;
+        height: 200px;
+        box-shadow: 0 1px 0px 0px #CCCCCC;
+    }
+
+    .chargeDetail .leftDiv > div > div {
+        width: 100%;
+        height: 100%;
+        flex-flow: row;
+        display: flex;
+    }
+
+    .chargeDetail .leftDiv > div span {
+        height: 100%;
+    }
+
+    .chargeDetail .leftDiv > div > div:nth-of-type(2) {
+        width: 100%;
+    }
+
+    .explain {
+        position: absolute;
+        width: 100%;
+        height: 70px;
+        background: rgb(255, 255, 255);
+        padding: 12px;
     }
 
 }
@@ -1937,6 +2127,7 @@ span.activity {
 .stepText {
     position: absolute;
     bottom: -22px;
+    left: -44px;
     color: #00CA78;
     min-width: 120px;
     text-align: center;
@@ -2036,9 +2227,18 @@ span.activity {
 
 }
 
+.finalCost div:first-of-type span {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    color: #999999;
+
+}
+
 .finalCost div:last-of-type span {
     color: #00CA78;
     font-size: 1.8rem;
+    width: 50%;
 
 }
 
@@ -2171,7 +2371,38 @@ span.activity {
     color: #00CA78;
 }
 
+
+.operationMenu {
+    /* position: fixed; */
+    z-index: 998;
+    /* top: 53px; */
+    /* bottom: 50px; */
+    min-height: 555px;
+    height: auto;
+    left: 0;
+    /* width: 49%; */
+    background: white;
+}
+
+
+.operationMenu.hidden {
+    display: block !important;
+    left: -50%;
+}
 @media (max-width: 768px) {
+    .operationMenu {
+        position: fixed;
+        z-index: 999;
+        top: 53px;
+        bottom: 50px;
+        min-height: 355px;
+        height: auto;
+        left: 0;
+        width: 49%;
+        -webkit-transition: all .4s ease;
+        transition: all .4s ease;
+        background: white;
+    }
     .container {
         padding-right: 4px;
         padding-left: 4px;
@@ -2185,9 +2416,11 @@ span.activity {
         width: 77%;
         left: 9%;
     }
+
     .orderForm .left, .orderForm .right {
         padding: 0px 10px;
     }
+
     .orderForm .left {
         order: 2;
     }
@@ -2197,22 +2430,7 @@ span.activity {
         padding: 4px;
     }
 
-    .operationMenu {
-        position: fixed;
-        z-index: 999;
-        top: 53px;
-        bottom: 0px;
-        height: auto;
-        left: 0;
-        width: 49%;
-        -webkit-transition: all .4s ease;
-        transition: all .4s ease;
-    }
 
-    .operationMenu.hidden {
-        display: block !important;
-        left: -50%;
-    }
 
     .menuToRightBtn {
         display: block !important;
@@ -2247,10 +2465,7 @@ span.activity {
     margin-bottom: 18px;
 }
 
-.operationMenu {
-    min-height: 555px;
-    background: white;
-}
+
 
 .panel-default > .panel-heading {
     position: relative;
@@ -2320,7 +2535,7 @@ span.activity {
         margin: 0 auto;
         background: white;
         height: 100%;
-        padding:12px 0px;
+        padding: 12px 0px;
     }
 
     .personalRight .userInf {
@@ -2348,12 +2563,15 @@ span.activity {
     align-items: center;
     background: #EEEEEE;
 }
-.entryOrder .formHead{
+
+.entryOrder .formHead {
     justify-content: start;
 }
-.entryOrder  .formHead span {
+
+.entryOrder .formHead span {
     width: 30%;
 }
+
 .orderNum {
     padding-left: 16px;
     height: 48px;
@@ -2577,7 +2795,7 @@ span.activity {
 
 .personalRight .realNameDiv input.editable {
     padding: 3px;
-    border:rgba(15, 203, 119, 0.2) solid 2px;
+    border: rgba(15, 203, 119, 0.2) solid 2px;
 
 }
 
@@ -2599,7 +2817,7 @@ span.activity {
 }
 
 #loginMask {
-    display:none;
+    display: none;
     position: absolute;
     top: 0;
     left: 0;
@@ -2669,15 +2887,16 @@ span.activity {
     right: 10px;
 }
 
-#loginMask .login-table  .closeLoginModule {
+#loginMask .login-table .closeLoginModule {
     position: absolute;
     width: 16px;
     top: 4px;
     right: 10px;
     font-size: 2rem;
 }
-#loginMask .closeLoginModule button{
-    background:white;
+
+#loginMask .closeLoginModule button {
+    background: white;
 
 }
 
@@ -2692,11 +2911,13 @@ span.activity {
         margin: 0 auto;
         position: relative;
     }
+
     .register-table > div {
         width: 276px;
         margin: 0 auto;
         position: relative;
     }
+
     #loginMask .loginDiv {
         width: 100%;
         margin: 0 auto;
@@ -2710,4 +2931,28 @@ span.activity {
         margin-top: -22px;
     }
 
+}
+
+.mapMarker{
+    width: 24px;
+    height: 24px;
+    /*background: #e2e2e2;*/
+}
+
+.mapText {
+    top: -38px;
+    left: -41px;
+    width: 100px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00ad67;
+    font-size: 1.4rem;
+    box-shadow: 0 1px 2px 0px #999999;
+}
+ .mapImg{
+    width: 24px;
+    height: auto;
 }

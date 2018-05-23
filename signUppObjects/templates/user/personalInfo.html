@@ -21,7 +21,7 @@
 
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true" style="">
-                    <a aria-controls="#userInformation" href="personalInfo.html">
+                    <a aria-controls="#userInformation" href="{% url 'user:user_info' %}">
                         <div class="panel-body">
                             <i class="icon fa fa-cog ">
                                 <!--<img src="{% static 'images/iconAccount2x.png"/>-->
@@ -29,9 +29,7 @@
                             <p>账户设置 </p>
                         </div>
                     </a>
-
                 </div>
-
             </div>
 
             <div class="panel panel-default">
@@ -50,7 +48,7 @@
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree"
                      aria-expanded="true" style="height: 0px;">
-                    <a aria-controls="#entryOrderContent" href="personalOrder.html">
+                    <a aria-controls="#entryOrderContent" href="{% url 'user:user_order' %}">
                         <div class="panel-body">
                             <i class="icon "><img src="{% static 'images/iconCoupon2x.png' %}"></i>
                             <p>报名订单 </p>
@@ -75,7 +73,7 @@
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree"
                      aria-expanded="true" style="height: 0px;">
-                    <a aria-controls="#myCouponContent" href="personalCoupon.html">
+                    <a aria-controls="#myCouponContent" href="{% url 'user:user_coupon' %}">
                         <div class="panel-body">
                             <i class="icon "><img src="{% static 'images/iconCoupon2x.png' %}"></i>
                             <p>优惠券 </p>
@@ -96,7 +94,7 @@
                 <div class="userImage">
                     <div class="userIconDiv">
                         <div id="userIcon">
-                            <img id="preview" alt="" src="{% static '/images/difficult3x.png' %}"/>
+                            <img id="preview" alt="" src="{{ MEDIA_URL }}{{ request.user.image }}"/>
 
                         </div>
                         <span>头像</span>
@@ -112,11 +110,11 @@
                 </div>
                 <div class="nicknameDiv">
                     <span class="label">用户名:</span>
-                    <span>用户5874</span>
+                    <span>{{ request.user.nick_name }}</span>
                 </div>
                 <div class="userPhoneDiv">
                     <span class="label">绑定手机:</span>
-                    <span>137****5874</span>
+                    <span>{{ request.user.telphone }}</span>
                 </div>
                 <div class="realNameDiv">
                     <span class="label">真实姓名:</span>

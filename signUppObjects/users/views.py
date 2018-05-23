@@ -91,10 +91,13 @@ class LoginView(View):
                 return render(request,'login.html',{'login_form':login_form,'msg':'用户名或密码错误','j':j,'course_id':course_id})
             else:
                 login(request, user)
-
-
-                if j == '2':
+                if j == '1':
+                    return HttpResponseRedirect('/course/course_list')
+                elif j == '2':
                     return HttpResponseRedirect('/course/course_info/{0}'.format(course_id))
+                elif j == '3':
+                    return HttpResponseRedirect('/users/user_info')
+
                 return HttpResponseRedirect('/course/active_detail/1')
                 #return render(request,'enrol.html')
         return render(request,'login.html',{'login_form':login_form,'j':j,'course_id':course_id})
@@ -166,7 +169,7 @@ class RegistView(View):
                     username = request.POST.get('username', '')
                     try:
                         user = UserProfile()
-                        user.username = username
+                        user.username = '拓叭吧学员'
                         user.telphone = telphone
                         user.set_password(password)
                         user.save()
@@ -183,12 +186,41 @@ class RegistView(View):
         else:
             return render(request,'register.html',{'register_form':register_form})
 #------------个人详情页------------------------------------------------------------------------>>>>>>>>>>>>>>
-
+from tradApp.models import Coupon
+from operation.models import UserCoupon
 class UserInfoView(View):
     def get(self,request):
-        if not request.user.is_authenticated():
-            return render(request,'login.html')
-        return render(request,'usercenter-info.html')
+        try:
+            user = request.user
+            return  render(request,'personalInfo.html')
+        except:
+            return HttpResponseRedirect('/users/login/?j=3')
+
+
+class UserCouponView(View):
+    def get(self,request):
+        status = request.GET.get('ct', '')
+        if status == '':
+            status = 'onused'
+        user = request.user
+        coupons = []
+        usercoupons = UserCoupon.objects.filter(user=user)
+        return render(request, 'personalCoupon.html', {'usercoupons': usercoupons, 'status': status})
+        # try:
+
+
+        # except:
+        #     return HttpResponseRedirect('/users/login/?j=3')
+
+
+class UserOrderView(View):
+    def get(self,request):
+        try:
+            user = request.user
+            return  render(request,'personalOrder.html')
+        except:
+            return HttpResponseRedirect('/users/login/?j=3')
+
 
 
 

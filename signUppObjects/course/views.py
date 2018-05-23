@@ -94,13 +94,11 @@ class ActiveDetail(View):
                 coupons = Coupon.objects.filter(active=active)
                 banners = Banner.objects.all()
                 return render(request, 'getCoupon.html', {'coupons': coupons, 'active': active, 'banners': banners,'login_form':login_form})
-
+    #这个接口
     def post(self,request):
-        print('---登录失败-->')
+
         login_form = LoginForm(request.POST)
         active_code = request.POST.get('active_code','')
-
-        # 每登录正常显示
         active = Active.objects.get(code=active_code)
         coupons = Coupon.objects.filter(active=active)
         banners = Banner.objects.all()

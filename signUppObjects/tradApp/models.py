@@ -42,6 +42,7 @@ class Simulator_Orders(models.Model):
 class Coupon(models.Model):
     Coupon_Status = (('used','已使用'),
                      ('onused','未使用'),
+                     ('outdate','已过期'),
                      )
     Coupon_isOver = (('true','可叠加'),
                      ('false','不可叠加'),

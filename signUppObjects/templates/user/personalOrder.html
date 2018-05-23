@@ -26,7 +26,7 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"
                      aria-expanded="true" style="height: 0px;">
-                    <a aria-controls="#userInformation" href="personalInfo.html">
+                    <a aria-controls="#userInformation" href="{% url 'user:user_info' %}">
                         <div class="panel-body">
                             <i class="icon fa fa-cog ">
                                 <!--<img src="{% static 'images/iconAccount2x.png"/>-->
@@ -54,7 +54,7 @@
                     </h4>
                 </div>
                 <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree" aria-expanded="true" style="">
-                    <a aria-controls="#entryOrderContent" href="personalOrder.html">
+                    <a aria-controls="#entryOrderContent" href="{% url 'user:user_order' %}">
                         <div class="panel-body">
                             <i class="icon "><img src="{% static 'images/iconCoupon2x.png' %}"></i>
                             <p>报名订单 </p>
@@ -79,7 +79,7 @@
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour"
                      aria-expanded="true" style="height: 0px;">
-                    <a aria-controls="#myCouponContent" href="personalCoupon.html">
+                    <a aria-controls="#myCouponContent" href="{% url 'user:user_coupon' %}">
                         <div class="panel-body">
                             <i class="icon "><img src="{% static 'images/iconCoupon2x.png' %}"></i>
                             <p>优惠券 </p>
