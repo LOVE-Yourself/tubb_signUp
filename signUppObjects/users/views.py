@@ -92,16 +92,29 @@ class LoginView(View):
                 return render(request, 'login.html', {'login_form':login_form, 'msg': '用户名或密码错误', 'j':j, 'course_id':course_id})
             else:
                 login(request, user)
+<<<<<<< HEAD
 
                 print('--->oldme-->',j)
                 if j == '2':
+=======
+                if j == '1':
+                    return HttpResponseRedirect('/course/active_detail/1')
+                elif j == '2':
+>>>>>>> 82538546e3aacadcd3a29b93b3df557f2b257a5c
                     return HttpResponseRedirect('/course/course_info/{0}'.format(course_id))
                 elif j == '1':
                     return HttpResponseRedirect('/users/user_info')
+<<<<<<< HEAD
                 elif j == '3':
                     return HttpResponseRedirect('/course/active_detail/1')
                 return HttpResponseRedirect('/')
         return render(request, 'login.html', {'login_form':login_form, 'j':j, 'course_id':course_id})
+=======
+
+                return HttpResponseRedirect('/')
+                #return render(request,'enrol.html')
+        return render(request,'login.html',{'login_form':login_form,'j':j,'course_id':course_id})
+>>>>>>> 82538546e3aacadcd3a29b93b3df557f2b257a5c
 
 
 from utils.send_code import YunPian

@@ -24,7 +24,7 @@ class TelNumVerifyRecord(models.Model):
     code = models.CharField(max_length=20,verbose_name=u'验证码')
     telnum = models.CharField(max_length=50,verbose_name=u'电话号码')
     send_type = models.CharField(max_length=20,choices=(('register',u'注册'),('forget',u'忘记密码')))
-    status = models.CharField(max_length=20,choices=(('true',u'可用'),('fail',u'已过期')))
+    # status = models.CharField(max_length=20,choices=(('true',u'可用'),('fail',u'已过期')))
     send_time = models.DateTimeField(default=datetime.now)
     add_time = models.DateTimeField(default=datetime.now,verbose_name=u'添加日期')
 

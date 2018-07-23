@@ -308,6 +308,7 @@ function getZoomParam(maxWidth, maxHeight, width, height) {
 }
 
 function showLogin() {
+<<<<<<< HEAD
     window.location.href = appConfig.requestUrl + "/users/login?j=2";
     //     $.ajax({
     //     type: 'GET',
@@ -325,6 +326,10 @@ function showLogin() {
     //
     //     }
     // });
+=======
+    window.location.href=appConfig.requestUrl + "/users/login?j=1";
+    // $("#loginMask").css("display", "block");
+>>>>>>> 82538546e3aacadcd3a29b93b3df557f2b257a5c
 
 }
 

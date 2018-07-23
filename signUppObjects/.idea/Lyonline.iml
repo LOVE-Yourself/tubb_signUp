@@ -4,7 +4,11 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/apps" isTestSource="false" />
     </content>
+<<<<<<< HEAD
     <orderEntry type="jdk" jdkName="Remote Python 3.6.3 (ssh://root@39.107.243.161:22/root/virtualenv/signuUpServer_venv/bin/python3.6)" jdkType="Python SDK" />
+=======
+    <orderEntry type="jdk" jdkName="Remote Python 3.6.3 (ssh://root@39.107.243.161:22/home/xuxingda/signUpObjects/tubb_signUp/signuUpServer_venv/bin/python3.6)" jdkType="Python SDK" />
+>>>>>>> 82538546e3aacadcd3a29b93b3df557f2b257a5c
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">
