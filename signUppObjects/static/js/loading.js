@@ -308,28 +308,10 @@ function getZoomParam(maxWidth, maxHeight, width, height) {
 }
 
 function showLogin() {
-<<<<<<< HEAD
-    window.location.href = appConfig.requestUrl + "/users/login?j=2";
-    //     $.ajax({
-    //     type: 'GET',
-    //     url: appConfig.requestUrl + "/users/login?j=2",
-    //
-    //     success: function (data) {
-    //         console.log(data)
-    //         if (data.status == 200) {
-    //             location.reload();
-    //         }
-    //         if (data.status == 202) {
-    //         }
-    //     },
-    //     error: function (e) {
-    //
-    //     }
-    // });
-=======
+
     window.location.href=appConfig.requestUrl + "/users/login?j=1";
     // $("#loginMask").css("display", "block");
->>>>>>> 82538546e3aacadcd3a29b93b3df557f2b257a5c
+
 
 }
 
