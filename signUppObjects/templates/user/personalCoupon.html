@@ -107,7 +107,7 @@
                 <div class="formBody ">
                     <div class="tabContent">
                         {% for user_coupon in usercoupons %}
-                        {% ifequal user_coupon.coupon.status 'onused'%}
+
                         <div class="col-xs-12  col-sm-12 col-md-6 col-lg-4 getCouponDiv  {% ifequal status 'onused' %}active{% else %}expire{% endifequal %}">
 
                             <div class="leftDiv">
@@ -131,8 +131,7 @@
                             <div class="invalid"><span>已领取</span>
                             </div>
                         </div>
-                        {% else %}
-                        {% endifequal %}
+
                         {% endfor %}
                     </div>
                 </div>

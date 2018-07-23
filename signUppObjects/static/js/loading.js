@@ -109,6 +109,7 @@ $(".getCouponDiv.available .getCouponBtn").click(function () {
                 location.reload();
             }
             if (data.status == 202) {
+
                 showLogin();
             }
         },
@@ -152,7 +153,7 @@ $(".orderForm  .payBtnDiv .payBtn").click(function () {
     console.log(userName+payMethod);
     $.ajax({
         type: 'POST',
-        url:  "/pay/payfor/",
+        url: "/pay/payfor/",
         data: {orderId:myDate.toStr()+rand,userName: userName, payMethod: payMethod,curriculumName:curriculumName,totalPayMoney:totalPayMoney},
         success: function (data) {
             if (data.status == 200){
@@ -307,7 +308,23 @@ function getZoomParam(maxWidth, maxHeight, width, height) {
 }
 
 function showLogin() {
-    $("#loginMask").css("display", "block");
+    window.location.href = appConfig.requestUrl + "/users/login?j=2";
+    //     $.ajax({
+    //     type: 'GET',
+    //     url: appConfig.requestUrl + "/users/login?j=2",
+    //
+    //     success: function (data) {
+    //         console.log(data)
+    //         if (data.status == 200) {
+    //             location.reload();
+    //         }
+    //         if (data.status == 202) {
+    //         }
+    //     },
+    //     error: function (e) {
+    //
+    //     }
+    // });
 
 }
 
@@ -324,4 +341,6 @@ $("button.menuToRightBtn").click(function () {
     $(".individualCenter .menuToRightBtn i ").toggleClass("fa-angle-right");
     $(".individualCenter .menuToRightBtn i").toggleClass("fa-angle-left");
 })
-
+setTimeout(function () {
+    showLogin();
+}, 1000)

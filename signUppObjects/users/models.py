@@ -10,6 +10,7 @@ class UserProfile(AbstractUser):
     sex = models.CharField(max_length=5,choices=(('male',u'男'),('female',u'女')))
     telphone = models.CharField(max_length=11,null=True,blank=True)
     image = models.ImageField(upload_to='image/%Y/%m',default=u'image/default.png',max_length=100)
+    add_time = models.DateTimeField(default=datetime.now,verbose_name=u'添加日期')
 
     class Meta:
         verbose_name = u'用户信息'
@@ -25,6 +26,7 @@ class TelNumVerifyRecord(models.Model):
     send_type = models.CharField(max_length=20,choices=(('register',u'注册'),('forget',u'忘记密码')))
     status = models.CharField(max_length=20,choices=(('true',u'可用'),('fail',u'已过期')))
     send_time = models.DateTimeField(default=datetime.now)
+    add_time = models.DateTimeField(default=datetime.now,verbose_name=u'添加日期')
 
     class Meta:
         verbose_name = u'短信验证'

@@ -29,45 +29,47 @@
             <div class="onlineServer"></div>
 
         </div>        <div class="nav-nav">
-        <ul class="nav-ul">
-            <li class="nav-li">
-                <div class="nav-con">
-                    <a href="index.html?showGet=0" class="tbb-a1">首页</a>
-                </div>
-                <div class="nav-down show-4"></div>
-            </li>
-            <li class="nav-li">
-                <div class="nav-con">
-                    <a href="enrol.html?showGet=1" class="tbb-a1">我要报名</a>
-                </div>
-                <div class="nav-down show-3"></div>
-            </li>
-            <li class="nav-li">
-                <div class="nav-con">
-                    <a href="kitcar.html?showGet=2" class="tbb-a1">KITCAR</a>
-                </div>
-                <div class="nav-down show-3"></div>
-            </li>
-            <li class="nav-li">
-                <div class="nav-con">
-                    <a href="app.html?showGet=3" class="tbb-a1">下载APP</a>
-                </div>
-                <div class="nav-down show-2"></div>
-            </li>
-            <li class="nav-li">
-                <div class="nav-con">
-                    <a href="about.html?showGet=4" class="tbb-a1">关于我们</a>
-                </div>
-                <div class="nav-down show-1"></div>
-            </li>
-            <li class="nav-li">
-                <div class="nav-con">
-                    <a href="join.html?showGet=5" class="tbb-a1">加入我们</a>
-                </div>
-                <div class="nav-down show-0"></div>
-            </li>
-            <li class="nav-li1"><i class="fa fa-car"></i></li>
-        </ul>
+            <ul class="nav-ul">
+                <li class="nav-li">
+                    <div class="nav-con">
+                        <a href="/" class="tbb-a1">首页</a>
+                    </div>
+                    <div class="nav-down show-4"></div>
+                </li>
+                <li class="nav-li">
+                    <div class="nav-con">
+                        <a href="{% url 'course:courseList' %}" class="tbb-a1">我要报名</a>
+                    </div>
+                    <div class="nav-down show-3"></div>
+                </li>
+                <li class="nav-li">
+                    <div class="nav-con">
+                        <a href="{% url 'operation:kitcar' %}" class="tbb-a1">KITCAR</a>
+                    </div>
+                    <div class="nav-down show-3"></div>
+                </li>
+                <li class="nav-li">
+                    <div class="nav-con">
+                        <a href="{% url 'operation:loadapp' %}" class="tbb-a1">下载APP</a>
+                    </div>
+                    <div class="nav-down show-2"></div>
+                </li>
+                <li class="nav-li">
+                    <div class="nav-con">
+                        <a href="{% url 'operation:about' %}" class="tbb-a1">关于我们</a>
+                    </div>
+                    <div class="nav-down show-1"></div>
+                </li>
+                <li class="nav-li">
+                    <div class="nav-con">
+                        <a href="{% url 'operation:joinus' %}" class="tbb-a1">加入我们</a>
+                    </div>
+                    <div class="nav-down show-0"></div>
+                </li>
+                <li class="nav-li1"><i class="fa fa-car"></i></li>
+            </ul>
+
+
             {% if request.user.is_authenticated %}
             <div class="user">
                <div class="userIcon">

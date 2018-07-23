@@ -9,7 +9,7 @@ import json,random
 # from  utils.util import send_email
 from .forms import LoginForm,RegisterForm,ForgetForm,ChangeForm,UploadImageForm
 from .models import UserProfile,TelNumVerifyRecord
-
+from utils.util import isauth
 # Create your views here.
 
 class CustomBackend(ModelBackend):
@@ -22,13 +22,14 @@ class CustomBackend(ModelBackend):
 
         except Exception as e :
             print(e)
+
             return None
 
 #忘记密码
 class ForgetView(View):
     def get(self,request):
         forget_form = ForgetForm()
-        return render(request,'forgetpwd.html',{'forget_form':forget_form})
+        return render(request, 'forgetpwd.html', {'forget_form':forget_form})
     def post(self,request):
         forget_form = ForgetForm(request.POST)
         if forget_form.is_valid():
@@ -44,24 +45,23 @@ class ForgetView(View):
             except:
                 return render(request, 'forgetpwd.html', {'forget_form': forget_form, 'msg': '该手机号未注册'})
             try:
-                VerifyRecord = TelNumVerifyRecord.objects.filter(telnum=telphone, code=code,send_type=send_type)
-            except:
-                return render(request, 'forgetpwd.html', {'forget_form': forget_form, 'msg': '验证码不符请重试'})
-            for verify in VerifyRecord:
-                if verify.status == 'true':
-                    password = request.POST.get('password1', '')
+                VerifyRecord = TelNumVerifyRecord.objects.filter(telnum=telphone, code=code,send_type=send_type).order_by('-send_time')[0]
+                five_munite_ago = datetime.now() - timedelta(hours=0,minutes=5,seconds=0)
+                if VerifyRecord:
+                    if VerifyRecord.send_time  < five_munite_ago:
+                        return render(request, 'forgetpwd.html', {'forget_form': forget_form, 'msg': '验证码已过期'})
+                    elif VerifyRecord.code != code:
+                        return render(request, 'forgetpwd.html', {'forget_form': forget_form, 'msg': '验证码不符请重试'})
                     try:
-                        pwd = hashers.make_password(password)
+                        pwd = hashers.make_password(passw1)
                         user.password = pwd
                         user.save()
                     except:
                         print('【+】：将数据保存后台出错')
                         return render(request, 'forgetpwd.html', {'forget_form': forget_form, 'msg': '网络延迟'})
                     return HttpResponseRedirect('/users/login/')
-                elif verify.status == 'fail':
-                    return render(request, 'forgetpwd.html', {'forget_form': forget_form, 'msg': '验证码过期'})
-                else:
-                    return render(request, 'forgetpwd.html', {'forget_form': forget_form, 'msg': '请重试'})
+            except:
+                return render(request, 'forgetpwd.html', {'forget_form': forget_form, 'msg': '内部服务器错误，请重试'})
         else:
             return render(request, 'forgetpwd.html', {'forget_form': forget_form})
 
@@ -70,13 +70,14 @@ class LoginView(View):
     def get(self,request):
         login_form = LoginForm()
         j = request.GET.get('j', '')
+        print('?-<>',j)
         course_id = request.GET.get('course_id', '')
-        return render(request,'login.html',{'login_form':login_form,'j':j,'course_id':course_id})
+        return render(request, 'login.html', {'login_form': login_form, 'j': j, 'course_id': course_id})
+
     def post(self,request):
         login_form = LoginForm(request.POST)
         j = request.POST.get('j', '')
         course_id = request.POST.get('course_id', '')
-        print('---->j', j)
 
         if login_form.is_valid():
             username = request.POST.get('username','')
@@ -85,27 +86,26 @@ class LoginView(View):
             try:
                 user = UserProfile.objects.get(username=username)
             except:
-                return render(request,'login.html',{'login_form':login_form,'msg':'该手机号未注册','j':j,'course_id':course_id})
+                return render(request, 'login.html', {'login_form':login_form, 'msg': '该手机号未注册', 'j':j, 'course_id':course_id})
             user = authenticate(username = username,password = password1)
             if user is  None:
-                return render(request,'login.html',{'login_form':login_form,'msg':'用户名或密码错误','j':j,'course_id':course_id})
+                return render(request, 'login.html', {'login_form':login_form, 'msg': '用户名或密码错误', 'j':j, 'course_id':course_id})
             else:
                 login(request, user)
-                if j == '1':
-                    return HttpResponseRedirect('/course/course_list')
-                elif j == '2':
-                    return HttpResponseRedirect('/course/course_info/{0}'.format(course_id))
-                elif j == '3':
-                    return HttpResponseRedirect('/users/user_info')
 
-                return HttpResponseRedirect('/course/active_detail/1')
-                #return render(request,'enrol.html')
-        return render(request,'login.html',{'login_form':login_form,'j':j,'course_id':course_id})
+                print('--->oldme-->',j)
+                if j == '2':
+                    return HttpResponseRedirect('/course/course_info/{0}'.format(course_id))
+                elif j == '1':
+                    return HttpResponseRedirect('/users/user_info')
+                elif j == '3':
+                    return HttpResponseRedirect('/course/active_detail/1')
+                return HttpResponseRedirect('/')
+        return render(request, 'login.html', {'login_form':login_form, 'j':j, 'course_id':course_id})
 
 
 from utils.send_code import YunPian
-from utils.util import PrintThread
-
+from datetime import datetime,timedelta
 from django.views.decorators.csrf import csrf_exempt,csrf_protect
 
 class GetveryCode(View):
@@ -114,6 +114,13 @@ class GetveryCode(View):
     @csrf_exempt
     def post(self,request):
         telnum = request.POST.get('phone', '')
+        VerifyRecord = TelNumVerifyRecord.objects.filter().order_by('-send_time')[0]
+        four_munite_ago = datetime.now() - timedelta(hours=0,minutes=4,seconds=0)
+        if VerifyRecord:
+            if VerifyRecord.send_time > four_munite_ago:
+                resp = {'status': 404, 'code': VerifyRecord.code, 'msg': '请求频繁'}
+                return HttpResponse(json.dumps(resp), content_type='application/json')
+
         print('---号码发送验证码---->',telnum)
         send_type = request.POST.get('send_type','')
         if telnum == '':
@@ -126,14 +133,10 @@ class GetveryCode(View):
             resp = {'status': 200, 'code':code,'msg':'发送成功' }
             #将验证码保存到表中
             VerifyRecord = TelNumVerifyRecord()
-            VerifyRecord.status = 'true'
             VerifyRecord.code = code
             VerifyRecord.telnum = telnum
             VerifyRecord.send_type = send_type
             VerifyRecord.save()
-            # 开线程 让它两分钟后失效
-            prints = PrintThread(VerifyRecord)
-            prints.start()
         else:
             resp = {'status':404,'code':code,'msg':'请求频繁'}
         return HttpResponse(json.dumps(resp), content_type='application/json')
@@ -141,74 +144,67 @@ class GetveryCode(View):
 class RegistView(View):
     def get(self,request):
         register_form = RegisterForm()
-        return render(request,'register.html',{'register_form':register_form})
+        return render(request, 'register.html', {'register_form':register_form})
     def post(self,request):
         register_form = RegisterForm(request.POST)
         if register_form.is_valid():
             passw1 = request.POST.get('password1','')
             passw2 = request.POST.get('password2','')
             if passw1 != passw2:
-                return render(request,'register.html',{'register_form':register_form,'msg':'两次输入密码不一致'})
+                return render(request, 'register.html', {'register_form':register_form, 'msg': '两次输入密码不一致'})
             telphone = request.POST.get('username','')
             code = request.POST.get('verifyNum','')
             try:
                 user = UserProfile.objects.get(telphone=telphone)
                 if user:
-                    return render(request,'register.html', {'register_form':register_form,'msg': '该手机号已注册过'})
+                    return render(request, 'register.html', {'register_form':register_form, 'msg': '该手机号已注册过'})
             except:
                 print('【+】该手机可以注册')
             try:
-                VerifyRecord = TelNumVerifyRecord.objects.filter(telnum=telphone,code=code,send_type='register')
-
+                VerifyRecord = TelNumVerifyRecord.objects.filter(telnum=telphone,code=code,send_type='register').order_by('-send_time')[0]
+                if VerifyRecord:
+                    five_minute_ago = datetime.now() - timedelta(hours=0,minutes=5,seconds=0)
+                    if VerifyRecord.send_time < five_minute_ago:
+                        return render(request, 'register.html', {'register_form': register_form, 'msg': '验证码已经过期'})
+                    else:
+                        password = request.POST.get('password1', '')
+                        username = request.POST.get('username', '')
+                        try:
+                            user = UserProfile()
+                            user.username = username
+                            user.telphone = telphone
+                            user.set_password(password)
+                            user.save()
+                        except:
+                            print('【+】：将数据保存后台出错')
+                            return render(request, 'register.html', {'register_form': register_form, 'msg': '网络延迟'})
+                        return HttpResponseRedirect('/users/login/')  # http://www.baidu.com/‘
             except:
-                return render(request,'register.html',{'register_form':register_form,'msg':'验证码不符请重试'})
-
-            for verify in VerifyRecord:
-                if verify.status == 'true':
-                    password = request.POST.get('password1','')
-                    username = request.POST.get('username', '')
-                    try:
-                        user = UserProfile()
-                        user.username = '拓叭吧学员'
-                        user.telphone = telphone
-                        user.set_password(password)
-                        user.save()
-                    except:
-                        print('【+】：将数据保存后台出错')
-                        return render(request, 'register.html', {'register_form':register_form,'msg': '网络延迟'})
-
-                    return HttpResponseRedirect('/users/login/') #http://www.baidu.com/‘
-
-                elif verify.status == 'fail':
-                    return render(request,'register.html',{'register_form':register_form,'msg':'验证码过期'})
-                else:
-                    return render(request,'register.html',{'register_form':register_form,'msg':'请重试'})
+                return render(request, 'register.html', {'register_form':register_form, 'msg': '服务器内部出错,请重试'})
         else:
-            return render(request,'register.html',{'register_form':register_form})
+            return render(request, 'register.html', {'register_form':register_form})
 #------------个人详情页------------------------------------------------------------------------>>>>>>>>>>>>>>
 from tradApp.models import Coupon
 from operation.models import UserCoupon
-class UserInfoView(View):
-    def get(self,request):
-        try:
-            user = request.user
-            return  render(request,'personalInfo.html')
-        except:
-            return HttpResponseRedirect('/users/login/?j=3')
 
+
+
+class UserInfoView(View):
+    @isauth
+    def get(self,request):
+        return render(request, 'personalInfo.html')
 
 class UserCouponView(View):
+    @isauth
     def get(self,request):
         status = request.GET.get('ct', '')
         if status == '':
             status = 'onused'
         user = request.user
         coupons = []
-        usercoupons = UserCoupon.objects.filter(user=user)
+        usercoupons = UserCoupon.objects.filter(user=user,status=status)
         return render(request, 'personalCoupon.html', {'usercoupons': usercoupons, 'status': status})
         # try:
-
-
         # except:
         #     return HttpResponseRedirect('/users/login/?j=3')
 

@@ -23,6 +23,17 @@ def dict_xml(data):
         xml.append('<{key}>{value}</{key}>'.format(key=k, value=v))
     return '<xml>{}</xml>'.format(''.join(xml))
 
+from django.shortcuts import HttpResponseRedirect
+def isauth(func):
+    def inner(self,request,*args,**kwargs):
+
+        if request.user.is_authenticated():
+            return func(request,*args,**kwargs)
+
+        return HttpResponseRedirect('/users/login?j=3')
+    return inner
+
+
 #开个线程10分钟后注销验证码
 #2.0后优化
 import threading  
