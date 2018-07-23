@@ -92,13 +92,13 @@ class LoginView(View):
             else:
                 login(request, user)
                 if j == '1':
-                    return HttpResponseRedirect('/course/course_list')
+                    return HttpResponseRedirect('/course/active_detail/1')
                 elif j == '2':
                     return HttpResponseRedirect('/course/course_info/{0}'.format(course_id))
                 elif j == '3':
                     return HttpResponseRedirect('/users/user_info')
 
-                return HttpResponseRedirect('/course/active_detail/1')
+                return HttpResponseRedirect('/')
                 #return render(request,'enrol.html')
         return render(request,'login.html',{'login_form':login_form,'j':j,'course_id':course_id})
 

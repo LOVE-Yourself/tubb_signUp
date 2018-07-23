@@ -307,7 +307,8 @@ function getZoomParam(maxWidth, maxHeight, width, height) {
 }
 
 function showLogin() {
-    $("#loginMask").css("display", "block");
+    window.location.href=appConfig.requestUrl + "/users/login?j=1";
+    // $("#loginMask").css("display", "block");
 
 }
 
