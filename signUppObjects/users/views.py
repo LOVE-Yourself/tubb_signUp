@@ -188,7 +188,6 @@ from tradApp.models import Coupon
 from operation.models import UserCoupon
 
 
-
 class UserInfoView(View):
     @isauth
     def get(self,request):
